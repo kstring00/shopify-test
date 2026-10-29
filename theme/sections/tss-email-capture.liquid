@@ -7,7 +7,13 @@
 {% endcomment %}
 {% liquid
   assign s = section.settings
+  # On an empty shelf the empty-state section already carries the email form.
+  assign skip = false
+  if request.page_type == 'collection' and collection.products_count == 0
+    assign skip = true
+  endif
 %}
+{% unless skip %}
 <div class="tss-section tss-email tss-section--{{ s.tone }} tss-section--compact">
   <div class="tss-container tss-email__grid" data-reveal>
     <div class="tss-email__copy">
@@ -19,6 +25,7 @@
     </div>
   </div>
 </div>
+{% endunless %}
 
 {% stylesheet %}
   .tss-email__grid {

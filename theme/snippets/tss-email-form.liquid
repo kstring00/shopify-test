@@ -11,7 +11,10 @@
 {% enddoc %}
 {% liquid
   assign form_id = 'tss-email-' | append: id
-  assign label = button_label | default: 'tss.email.button' | t
+  assign label = button_label
+  if label == blank
+    assign label = 'tss.email.button' | t
+  endif
 %}
 {% form 'customer', id: form_id, class: 'tss-email-form' %}
   <input type="hidden" name="contact[tags]" value="newsletter">
