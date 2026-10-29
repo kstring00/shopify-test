@@ -1,0 +1,141 @@
+{% comment %}
+  Section contract.
+  Products on a shelf as large editorial cards. The first product gets a feature card so
+  a shelf with one or three items still looks intentional; a shelf with thirty paginates.
+  Renders nothing for an empty collection (tss-shelf-empty takes over).
+  @example
+  <!-- templates/collection.json, after tss-shelf-header -->
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+%}
+{% if collection.products_count > 0 %}
+  <div class="tss-section tss-section--compact tss-shelf-grid tss-section--{{ s.tone }}">
+    <div class="tss-container">
+      {% paginate collection.products by s.per_page %}
+        <div class="tss-shelf-grid__grid">
+          {% for product in collection.products %}
+            {% liquid
+              assign size = 'standard'
+              assign eager = false
+              if forloop.first and paginate.current_page == 1 and s.feature_first
+                assign size = 'feature'
+                assign eager = true
+              endif
+            %}
+            <div class="tss-shelf-grid__item tss-shelf-grid__item--{{ size }}" data-reveal style="--tss-delay: {{ forloop.index0 | modulo: 3 | times: 0.08 }}s">
+              {% render 'tss-product-card', product: product, size: size, eager: eager %}
+            </div>
+          {% endfor %}
+        </div>
+        {% if paginate.pages > 1 %}
+          <div class="tss-shelf-grid__pagination">
+            {% render 'pagination-controls', paginate: paginate %}
+          </div>
+        {% endif %}
+      {% endpaginate %}
+    </div>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .tss-shelf-grid__grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tss-shelf-grid__grid {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .tss-shelf-grid__item--standard {
+      grid-column: span 3;
+    }
+
+    .tss-shelf-grid__item--feature {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .tss-shelf-grid__item--standard {
+      grid-column: span 2;
+    }
+
+    .tss-shelf-grid__item--standard:nth-last-child(1):nth-child(3n + 2),
+    .tss-shelf-grid__item--standard:nth-last-child(2):nth-child(3n + 2) {
+      grid-column: span 3;
+    }
+
+    .tss-shelf-grid__item--standard:nth-last-child(1):nth-child(3n) {
+      grid-column: span 3;
+    }
+  }
+
+  .tss-shelf-grid__item--feature .tss-product-card {
+    display: grid;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tss-shelf-grid__item--feature .tss-product-card {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      align-items: center;
+    }
+
+    .tss-shelf-grid__item--feature .tss-product-card__media {
+      aspect-ratio: 4 / 3;
+      height: 100%;
+    }
+  }
+
+  .tss-shelf-grid__pagination {
+    margin-block-start: calc(var(--tss-stack) * 1.5);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:tss.shelf.grid_name",
+  "class": "section-wrapper",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "feature_first",
+      "label": "t:tss.shelf.feature_first",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "per_page",
+      "label": "t:tss.shelf.per_page",
+      "min": 6,
+      "max": 24,
+      "step": 3,
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "t:tss.common.tone",
+      "options": [
+        { "value": "cream", "label": "t:tss.common.tone_cream" },
+        { "value": "card", "label": "t:tss.common.tone_card" },
+        { "value": "sage", "label": "t:tss.common.tone_sage" }
+      ],
+      "default": "cream"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:tss.shelf.grid_name",
+      "category": "t:tss.common.category"
+    }
+  ]
+}
+{% endschema %}

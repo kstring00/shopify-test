@@ -1,0 +1,67 @@
+{% doc %}
+  One-line benefit under a product title. Reads the product's custom.one_line_benefit
+  metafield when present, otherwise the first sentence of the description.
+  Settings read from block.settings: text (manual override), size.
+{% enddoc %}
+{% liquid
+  assign product = closest.product
+  assign benefit = block.settings.text
+  if benefit == blank
+    assign benefit = product.metafields.custom.one_line_benefit.value
+  endif
+  if benefit == blank
+    assign benefit = product.description | replace: '</p>', ' ' | strip_html | split: '. ' | first | strip
+  endif
+%}
+{% if benefit != blank %}
+  <p class="tss-benefit tss-benefit--{{ block.settings.size }}" {{ block.shopify_attributes }}>{{ benefit }}</p>
+{% elsif request.design_mode %}
+  <p class="tss-benefit tss-muted" {{ block.shopify_attributes }}>{{ 'tss.product.benefit_editor_hint' | t }}</p>
+{% endif %}
+
+{% stylesheet %}
+  .tss-benefit {
+    margin: 0;
+    max-width: 52ch;
+    color: var(--tss-color-muted);
+    line-height: var(--line-height--body-loose);
+  }
+
+  .tss-benefit--large {
+    font-size: clamp(1.0625rem, 0.95rem + 0.45vw, 1.25rem);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:tss.benefit.name",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:tss.benefit.info"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "t:tss.benefit.override"
+    },
+    {
+      "type": "select",
+      "id": "size",
+      "label": "t:tss.common.size",
+      "options": [
+        { "value": "normal", "label": "t:tss.common.size_normal" },
+        { "value": "large", "label": "t:tss.common.size_large" }
+      ],
+      "default": "large"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:tss.benefit.name",
+      "category": "t:tss.common.category"
+    }
+  ]
+}
+{% endschema %}

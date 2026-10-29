@@ -371,5 +371,53 @@
       "default_title": "Default Title",
       "sticky_add_to_cart": "Quick add to cart bar"
     }
+  },
+  "tss": {
+    "hero": {
+      "placeholder_alt": "Preview of The Support Shelf templates"
+    },
+    "email": {
+      "label": "Email address",
+      "placeholder": "you@yourclinic.com",
+      "button": "Join",
+      "success": "You are on the list. We only write when something new is ready."
+    },
+    "product": {
+      "preview_placeholder": "Preview pages for {{ title }} are on the way",
+      "save": "Save",
+      "instant_download": "Instant download",
+      "one_time": "one-time, yours to keep",
+      "benefit_editor_hint": "Add a one-line benefit here or in the product's custom.one_line_benefit metafield."
+    },
+    "doors": {
+      "placeholder_alt": "{{ title }} resources",
+      "resource_count": {
+        "one": "{{ count }} resource",
+        "other": "{{ count }} resources"
+      }
+    },
+    "featured": {
+      "fallback_title": "Clinic Welcome Kit Builder"
+    },
+    "testimonials": {
+      "empty_editor_hint": "Testimonials: add a testimonial block to show this section. It stays hidden on the live store until then."
+    },
+    "related": {
+      "view_shelf": "View {{ shelf }}",
+      "empty_editor_hint": "More from this shelf: hidden because this product has no shelf siblings yet."
+    },
+    "shelf": {
+      "resource_count": {
+        "one": "{{ count }} resource",
+        "other": "{{ count }} resources"
+      }
+    },
+    "contact": {
+      "prefer_email": "Prefer email?"
+    },
+    "footer": {
+      "link_hidden_hint": "Link hidden until its page exists",
+      "aria_label": "Footer"
+    }
   }
 }

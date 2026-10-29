@@ -1,0 +1,433 @@
+/* The Support Shelf: shared layout, type and motion utilities.
+   Tokens live in snippets/tss-tokens.liquid. Component rules live in each section's stylesheet. */
+
+.tss-section {
+  width: 100%;
+  padding-block: var(--tss-section-padding);
+  color: var(--tss-color-ink);
+  background: var(--tss-color-cream);
+}
+
+.tss-section--compact {
+  padding-block: var(--tss-section-padding-compact);
+}
+
+.tss-section--flush-top {
+  padding-block-start: 0;
+}
+
+.tss-section--card {
+  background: var(--tss-color-card);
+}
+
+.tss-section--sage {
+  background: var(--tss-color-sage-tint);
+}
+
+.tss-section--clay {
+  background: var(--tss-color-clay-tint);
+}
+
+.tss-container {
+  width: min(100% - (var(--page-margin) * 2), var(--page-content-width, 90rem));
+  margin-inline: auto;
+  min-width: 0;
+}
+
+.tss-container--narrow {
+  max-width: 52rem;
+}
+
+.tss-container--prose {
+  max-width: var(--tss-measure);
+}
+
+/* Type helpers */
+.tss-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  margin: 0 0 var(--tss-stack);
+  font-family: var(--font-subheading--family);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tss-color-sage-deep);
+}
+
+.tss-eyebrow::before {
+  content: '';
+  width: 1.5rem;
+  height: 1px;
+  background: currentcolor;
+  opacity: 0.6;
+}
+
+.tss-heading {
+  margin: 0;
+  text-wrap: balance;
+  max-width: 24ch;
+}
+
+.tss-heading--wide {
+  max-width: 32ch;
+}
+
+.tss-lede,
+.tss-prose {
+  max-width: var(--tss-measure);
+  line-height: var(--line-height--body-loose);
+}
+
+.tss-lede {
+  font-size: clamp(1.0625rem, 0.95rem + 0.45vw, 1.25rem);
+  color: var(--tss-color-muted);
+}
+
+.tss-lede > p,
+.tss-prose > p {
+  margin-block: 0 1em;
+}
+
+.tss-lede > :last-child,
+.tss-prose > :last-child {
+  margin-block-end: 0;
+}
+
+.tss-prose a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgb(var(--tss-color-clay-rgb) / 0.7);
+  text-underline-offset: 0.18em;
+}
+
+.tss-muted {
+  color: var(--tss-color-muted);
+}
+
+.tss-small {
+  font-size: 0.875rem;
+}
+
+/* Text-style links: the secondary action everywhere */
+.tss-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  min-height: 44px;
+  font-family: var(--font-subheading--family);
+  font-weight: 500;
+  color: var(--tss-color-ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgb(var(--tss-color-clay-rgb) / 0.6);
+  padding-block: 0.2em;
+  transition: border-color var(--tss-hover-duration) var(--tss-ease), color var(--tss-hover-duration) var(--tss-ease);
+}
+
+.tss-link:hover,
+.tss-link:focus-visible {
+  color: var(--tss-color-clay);
+  border-color: currentcolor;
+}
+
+.tss-link__arrow {
+  width: 1em;
+  height: 1em;
+  transition: transform var(--tss-hover-duration) var(--tss-ease);
+}
+
+.tss-link:hover .tss-link__arrow {
+  transform: translateX(0.2em);
+}
+
+/* Buttons: the theme's .button is the one dominant CTA; make sure it is thumb sized */
+.tss-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding-inline: 1.75rem;
+  gap: 0.6em;
+}
+
+.tss-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.75rem;
+  margin-block-start: calc(var(--tss-stack) * 1.25);
+}
+
+/* Cards */
+.tss-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--tss-color-card);
+  border: 1px solid var(--tss-color-hairline);
+  border-radius: var(--tss-radius-lg);
+  overflow: hidden;
+  transition: transform var(--tss-hover-duration) var(--tss-ease), box-shadow var(--tss-hover-duration) var(--tss-ease);
+}
+
+.tss-card--cream {
+  background: var(--tss-color-cream);
+}
+
+.tss-card__link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.tss-card__link:focus-visible {
+  outline: var(--focus-outline-width) solid currentcolor;
+  outline-offset: 2px;
+}
+
+@media (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .tss-card--lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--tss-shadow-lift);
+  }
+}
+
+/* Checklists */
+.tss-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.tss-checklist li {
+  display: grid;
+  grid-template-columns: 1.375rem 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  line-height: var(--line-height--body-normal);
+}
+
+.tss-checklist li::before {
+  content: '';
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
+  background: var(--tss-color-sage-tint) center / 0.75rem no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M4.75 10.5l3 3.5L15.25 6' stroke='%235F6E52' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  margin-top: 0.05em;
+}
+
+/* Media placeholder used wherever a real image hasn't been uploaded yet */
+.tss-placeholder {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  background: linear-gradient(160deg, var(--tss-color-card), rgb(var(--tss-color-sage-rgb) / 0.22));
+  overflow: hidden;
+}
+
+.tss-placeholder__sheet {
+  position: absolute;
+  width: 46%;
+  aspect-ratio: 3 / 4;
+  border-radius: 6px;
+  background: var(--tss-color-cream);
+  box-shadow: var(--tss-shadow);
+  border: 1px solid var(--tss-color-hairline);
+}
+
+.tss-placeholder__sheet::before,
+.tss-placeholder__sheet::after {
+  content: '';
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  height: 6%;
+  border-radius: 3px;
+  background: var(--tss-color-sage-tint);
+}
+
+.tss-placeholder__sheet::before {
+  top: 14%;
+  right: 40%;
+  background: rgb(var(--tss-color-sage-rgb) / 0.5);
+}
+
+.tss-placeholder__sheet::after {
+  top: 28%;
+  box-shadow: 0 160% 0 var(--tss-color-sage-tint), 0 320% 0 var(--tss-color-sage-tint);
+}
+
+.tss-placeholder__sheet:nth-child(1) {
+  transform: translate(-28%, 6%) rotate(-7deg);
+  opacity: 0.85;
+}
+
+.tss-placeholder__sheet:nth-child(2) {
+  transform: translate(0, -4%) rotate(0deg);
+  z-index: 1;
+}
+
+.tss-placeholder__sheet:nth-child(3) {
+  transform: translate(28%, 8%) rotate(7deg);
+  opacity: 0.85;
+}
+
+.tss-placeholder__sheet--clay::before {
+  background: rgb(var(--tss-color-clay-rgb) / 0.55);
+}
+
+/* Section headers */
+.tss-section-head {
+  display: grid;
+  gap: var(--tss-stack);
+  margin-block-end: calc(var(--tss-stack) * 1.5);
+}
+
+@media screen and (min-width: 990px) {
+  .tss-section-head--split {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    align-items: end;
+  }
+}
+
+.tss-section-head .tss-eyebrow {
+  margin-block-end: 0.75rem;
+}
+
+/* Scroll reveal: hidden state only applies when JS is running and motion is allowed */
+@media (prefers-reduced-motion: no-preference) {
+  html.tss-js [data-reveal] {
+    opacity: 0;
+    transform: translateY(var(--tss-reveal-distance));
+    transition: opacity var(--tss-reveal-duration) var(--tss-ease), transform var(--tss-reveal-duration) var(--tss-ease);
+    transition-delay: var(--tss-delay, 0s);
+  }
+
+  html.tss-js [data-reveal].is-visible,
+  html.tss-js.shopify-design-mode [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Form field used by email capture */
+.tss-field {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.tss-field__input {
+  flex: 1 1 14rem;
+  min-height: 52px;
+  padding: 0 1.1rem;
+  font: inherit;
+  font-size: max(1rem, var(--font-paragraph--size));
+  color: var(--color-input-text);
+  background: var(--color-input-background);
+  border: var(--style-border-width-inputs) solid var(--color-input-border);
+  border-radius: var(--style-border-radius-inputs);
+}
+
+.tss-field__input::placeholder {
+  color: rgb(var(--color-input-text-rgb) / 0.6);
+}
+
+.tss-field .button {
+  min-height: 52px;
+  padding-inline: 1.5rem;
+}
+
+.tss-form-note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block-start: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.tss-form-note .svg-wrapper > svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+/* Visually hidden (theme already ships .visually-hidden; alias kept for clarity) */
+.tss-sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* "Format & what's included" box, shared by the featured kit section and the product block */
+.tss-format {
+  display: grid;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1.25rem 1.375rem;
+  border: 1px solid var(--tss-color-hairline);
+  border-radius: var(--tss-radius);
+  background: var(--tss-color-cream);
+}
+
+.tss-format__heading {
+  margin: 0;
+  font-family: var(--font-subheading--family);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tss-color-sage-deep);
+}
+
+.tss-format__line {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.tss-format__line .svg-wrapper {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--tss-color-sage-tint);
+  color: var(--tss-color-sage-deep);
+  flex-shrink: 0;
+}
+
+.tss-format__line .svg-wrapper > svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.tss-format__list ul {
+  margin: 0;
+  padding-inline-start: 1.1rem;
+  display: grid;
+  gap: 0.35rem;
+  color: var(--tss-color-muted);
+}
+
+.tss-format__list ul li::marker {
+  color: var(--tss-color-sage);
+}
+
+.tss-format__note {
+  margin: 0;
+}

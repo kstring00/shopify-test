@@ -1,0 +1,232 @@
+{% comment %}
+  Section contract.
+  Spotlights one product (the Clinic Welcome Kit Builder) with its mockup, one-line
+  benefit, price and a "Format & what's included" summary that answers "is this
+  editable or just a PDF?" before the visitor clicks through.
+  @example
+  <!-- templates/index.json; pick the product in the theme editor -->
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+  assign product = s.product
+  assign title = s.heading
+  if title == blank and product != blank
+    assign title = product.title
+  endif
+  if title == blank
+    assign title = 'tss.featured.fallback_title' | t
+  endif
+  assign benefit = s.benefit
+  if benefit == blank and product != blank
+    assign benefit = product.metafields.custom.one_line_benefit.value
+    if benefit == blank
+      assign benefit = product.description | replace: '</p>', ' ' | strip_html | split: '. ' | first | strip
+    endif
+  endif
+  assign image = product.featured_media.preview_image
+  assign href = product.url | default: s.fallback_link | default: routes.collections_url
+%}
+<div class="tss-section tss-featured tss-section--{{ s.tone }}">
+  <div class="tss-container tss-featured__grid">
+    <div class="tss-featured__media" data-reveal>
+      <div class="tss-featured__frame">
+        {% if image != blank %}
+          <a href="{{ href }}" aria-label="{{ title | escape }}">
+            {{
+              image
+              | image_url: width: 1400
+              | image_tag:
+                widths: '480, 720, 960, 1200, 1400',
+                sizes: '(min-width: 990px) 48vw, 100vw',
+                loading: 'lazy',
+                alt: image.alt | default: title
+            }}
+          </a>
+        {% else %}
+          {% assign placeholder_label = 'tss.product.preview_placeholder' | t: title: title %}
+          {% render 'tss-placeholder-media', label: placeholder_label %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="tss-featured__copy" data-reveal style="--tss-delay: 0.1s">
+      {% if s.eyebrow != blank %}<p class="tss-eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+      <h2 class="tss-heading tss-featured__title">{{ title | escape }}</h2>
+      {% if benefit != blank %}
+        <p class="tss-lede">{{ benefit }}</p>
+      {% endif %}
+      {% if product != blank %}
+        <p class="tss-featured__price">
+          {{ product.price | money }}
+          <span class="tss-muted tss-small">{{ 'tss.product.one_time' | t }}</span>
+        </p>
+      {% endif %}
+
+      <div class="tss-format tss-featured__format">
+        <h3 class="tss-format__heading">{{ s.format_heading | escape }}</h3>
+        {% if s.format_line != blank %}
+          <p class="tss-format__line">
+            <span class="svg-wrapper" aria-hidden="true">{{ 'icon-checkmark.svg' | inline_asset_content }}</span>
+            {{ s.format_line | escape }}
+          </p>
+        {% endif %}
+        {% if s.included != blank %}
+          <div class="tss-format__list tss-prose">{{ s.included }}</div>
+        {% endif %}
+      </div>
+
+      <div class="tss-actions">
+        <a class="tss-link" href="{{ href }}">
+          {{ s.cta_label | escape }}
+          <svg class="tss-link__arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">{% render 'icon', icon: 'arrow' %}</svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .tss-featured__grid {
+    display: grid;
+    gap: calc(var(--tss-stack) * 1.5);
+    align-items: center;
+  }
+
+  @media screen and (min-width: 990px) {
+    .tss-featured__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(2rem, 6vw, 6rem);
+    }
+  }
+
+  .tss-featured__frame {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--tss-radius-lg);
+    overflow: hidden;
+    background: var(--tss-color-card);
+    box-shadow: var(--tss-shadow);
+  }
+
+  .tss-featured__frame a,
+  .tss-featured__frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .tss-featured__title {
+    font-size: clamp(1.875rem, 1.3rem + 2vw, 3rem);
+    line-height: 1.08;
+  }
+
+  .tss-featured__copy .tss-lede {
+    margin-block-start: var(--tss-stack);
+  }
+
+  .tss-featured__price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin: var(--tss-stack) 0 0;
+    font-family: var(--font-subheading--family);
+    font-weight: 500;
+    font-size: 1.25rem;
+  }
+
+  .tss-featured__format {
+    margin-block-start: calc(var(--tss-stack) * 1.25);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:tss.featured.name",
+  "class": "section-wrapper",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "t:tss.common.product",
+      "info": "t:tss.featured.product_info"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:tss.common.eyebrow",
+      "default": "t:tss.featured.eyebrow_default"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:tss.common.heading",
+      "info": "t:tss.common.blank_uses_product"
+    },
+    {
+      "type": "text",
+      "id": "benefit",
+      "label": "t:tss.common.benefit",
+      "info": "t:tss.common.benefit_info"
+    },
+    {
+      "type": "header",
+      "content": "t:tss.format.heading"
+    },
+    {
+      "type": "text",
+      "id": "format_heading",
+      "label": "t:tss.common.heading",
+      "default": "t:tss.format.heading_default"
+    },
+    {
+      "type": "text",
+      "id": "format_line",
+      "label": "t:tss.format.format_line",
+      "info": "t:tss.format.format_line_info",
+      "default": "t:tss.format.format_line_default"
+    },
+    {
+      "type": "richtext",
+      "id": "included",
+      "label": "t:tss.format.included",
+      "default": "t:tss.format.included_default"
+    },
+    {
+      "type": "header",
+      "content": "t:tss.common.secondary_link"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:tss.common.label",
+      "default": "t:tss.featured.cta_default"
+    },
+    {
+      "type": "url",
+      "id": "fallback_link",
+      "label": "t:tss.featured.fallback_link",
+      "info": "t:tss.featured.fallback_link_info"
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "t:tss.common.tone",
+      "options": [
+        { "value": "cream", "label": "t:tss.common.tone_cream" },
+        { "value": "card", "label": "t:tss.common.tone_card" },
+        { "value": "sage", "label": "t:tss.common.tone_sage" }
+      ],
+      "default": "card"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:tss.featured.name",
+      "category": "t:tss.common.category"
+    }
+  ]
+}
+{% endschema %}

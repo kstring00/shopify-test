@@ -1,0 +1,19 @@
+{% doc %}
+  Decides whether a block that carries an optional product picker should render for the
+  current product. Echoes "true" or "false" so callers can capture it.
+
+  @param {object} block_product - The block's product setting (may be blank)
+  @param {product} current_product - The product being viewed
+
+  @example
+  {% capture show %}{% render 'tss-product-filter', block_product: block.settings.product, current_product: product %}{% endcapture %}
+{% enddoc %}
+{%- liquid
+  if block_product == blank
+    echo 'true'
+  elsif current_product != blank and block_product.handle == current_product.handle
+    echo 'true'
+  else
+    echo 'false'
+  endif
+-%}

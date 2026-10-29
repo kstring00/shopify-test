@@ -1,805 +1,171 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "hero_p9CmMG": {
-      "type": "hero",
+    "hero": {
+      "type": "tss-hero",
       "blocks": {
-        "group_6w9b3Y": {
-          "type": "group",
-          "name": "t:names.group",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "center",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 16,
-            "width": "fit-content",
-            "custom_width": 70,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_color": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "group_9wtdTw": {
-              "type": "group",
-              "name": "t:names.group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "center",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 40,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "background_color": "",
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "text_qHY3XF": {
-                  "type": "text",
-                  "name": "t:names.heading",
-                  "settings": {
-                    "text": "<h1>Elevate every interaction</h1>",
-                    "width": "100%",
-                    "max_width": "narrow",
-                    "alignment": "center",
-                    "type_preset": "h1",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "{{ settings.color_palette.background }}",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 60,
-                    "padding-block-end": 60,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_qHY3XF"
-              ]
-            }
-          },
-          "block_order": [
-            "group_9wtdTw"
-          ]
-        }
+        "proof_1": { "type": "proof", "settings": { "text": "Built inside ABA clinics" } },
+        "proof_2": { "type": "proof", "settings": { "text": "Editable, not just a PDF" } },
+        "proof_3": { "type": "proof", "settings": { "text": "Instant download" } }
       },
-      "block_order": [
-        "group_6w9b3Y"
-      ],
-      "name": "t:names.hero",
+      "block_order": ["proof_1", "proof_2", "proof_3"],
       "settings": {
-        "media_type_1": "image",
-        "image_1": "shopify://shop_images/9ecea7c6481b9e60fbcbd9837ebaad5f.png",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 0,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 5,
-        "background_color": "rgba(0,0,0,0)",
-        "toggle_overlay": true,
-        "overlay_color": "#03030314",
-        "overlay_style": "gradient",
-        "gradient_direction": "to top",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 24,
-        "padding-block-end": 100
+        "eyebrow": "Thoughtfully made tools for the people who care",
+        "heading": "Resources for ABA clinics and the families they serve.",
+        "subheading": "<p>Editable welcome kits, communication templates and visual routines, made by someone who works inside ABA clinics with kids and parents every day and designs for the web the rest of the time. They look finished on day one. You make them yours.</p>",
+        "cta_label": "Browse the Clinic Shelf",
+        "cta_link": "shopify://collections/the-clinic-shelf",
+        "secondary_label": "For families",
+        "secondary_link": "shopify://collections/the-family-shelf",
+        "image_alt": "Preview of The Support Shelf templates spread across a desk",
+        "tone": "cream"
       }
     },
-    "marquee_KN4PYb": {
-      "type": "marquee",
+    "doors": {
+      "type": "tss-two-doors",
       "blocks": {
-        "text_kFiJUi": {
-          "type": "text",
+        "clinic": {
+          "type": "door",
           "settings": {
-            "text": "<p>Premium templates and kits designed to bring clarity and calm to clinic and home routines</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h6",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "tight",
-            "letter_spacing": "tight",
-            "case": "none",
-            "wrap": "nowrap",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "collection": "the-clinic-shelf",
+            "audience": "For clinics",
+            "title": "The Clinic Shelf",
+            "promise": "Onboarding kits, parent communication and operations templates that make a small clinic look as organized as it already is.",
+            "cta_label": "Browse the Clinic Shelf",
+            "image_alt": "Clinic Shelf templates: welcome kit, newsletter and communication cards",
+            "size": "large",
+            "door_tone": "sage"
+          }
         },
-        "text_separator": {
-          "type": "text",
+        "family": {
+          "type": "door",
           "settings": {
-            "text": "<p>/</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h6",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "tight",
-            "letter_spacing": "tight",
-            "case": "none",
-            "wrap": "nowrap",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "collection": "the-family-shelf",
+            "audience": "For families",
+            "title": "The Family Shelf",
+            "promise": "Visual routines and everyday tools that make transitions clearer for kids and calmer for the grown-ups.",
+            "cta_label": "Browse the Family Shelf",
+            "image_alt": "Family Shelf templates: daily routine cards and schedules",
+            "size": "standard",
+            "door_tone": "card"
+          }
         }
       },
-      "block_order": [
-        "text_kFiJUi",
-        "text_separator"
-      ],
-      "name": "t:names.marquee_section",
+      "block_order": ["clinic", "family"],
       "settings": {
-        "movement_direction": "reverse",
-        "background_color": "{{ settings.color_palette.color2 }}",
-        "padding-block-start": 24,
-        "padding-block-end": 24,
-        "gap_between_elements": 24
+        "eyebrow": "Two shelves",
+        "heading": "Pick the shelf that fits the work in front of you.",
+        "tone": "cream",
+        "compact": false
       }
     },
-    "product_list_themegen": {
-      "type": "product-list",
-      "disabled": false,
-      "blocks": {
-        "static-header": {
-          "type": "_product-list-content",
-          "name": "t:names.header",
-          "static": true,
-          "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "center",
-            "vertical_alignment": "center",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_color": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_list_text_Bd9pVh": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h2>Featured products</h2>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_list_text_Bd9pVh"
-          ]
-        },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
-          "settings": {
-            "product_card_gap": 8,
-            "background_color": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_card_gallery_PhczVC": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "portrait",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "group_McqFAT": {
-              "type": "_product-card-group",
-              "name": "t:names.group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 4,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "background_color": "",
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "link": "",
-                "open_in_new_tab": false,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "text_MEKzFi": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "settings": {
-                    "text": "<h5>{{ closest.product.title }}</h5>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "custom",
-                    "font": "var(--font-subheading--family)",
-                    "font_size": "1.25rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "price_37riDf": {
-                  "type": "price",
-                  "name": "t:names.product_price",
-                  "settings": {
-                    "show_sale_price_first": true,
-                    "show_installments": false,
-                    "show_tax_info": false,
-                    "type_preset": "paragraph",
-                    "width": "100%",
-                    "alignment": "center",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "text_color": "",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "swatches_87VJC8": {
-                  "type": "swatches",
-                  "name": "t:names.swatches",
-                  "settings": {
-                    "product_swatches_alignment": "flex-start",
-                    "product_swatches_alignment_mobile": "flex-start",
-                    "hide_padding": false,
-                    "product_swatches_padding_top": 4,
-                    "product_swatches_padding_bottom": 0,
-                    "product_swatches_padding_left": 0,
-                    "product_swatches_padding_right": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_MEKzFi",
-                "price_37riDf",
-                "swatches_87VJC8"
-              ]
-            }
-          },
-          "block_order": [
-            "product_card_gallery_PhczVC",
-            "group_McqFAT"
-          ]
-        }
-      },
-      "name": "t:names.products_grid",
+    "featured": {
+      "type": "tss-featured-kit",
       "settings": {
-        "collection": "asset-pack-137143418882-example-products",
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "max_products": 4,
-        "columns": 4,
-        "mobile_columns": "1",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 0,
-        "rows_gap": 36,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "full-width",
-        "horizontal_alignment": "flex-start",
-        "gap": 36,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "product": "clinic-welcome-kit-builder",
+        "eyebrow": "Featured on the Clinic Shelf",
+        "heading": "",
+        "benefit": "Everything a new family needs in their first week, in one editable system that looks as professional as the care you provide.",
+        "format_heading": "Format & what's included",
+        "format_line": "Editable [format] template. Instant delivery after purchase.",
+        "included": "<ul><li>Change the wording, colors and logo so it reads as your clinic.</li><li>Download link on the confirmation page and in your email, right after checkout.</li><li>Print it, email it, or hand it over on a tablet.</li></ul>",
+        "cta_label": "See what's inside the kit",
+        "fallback_link": "shopify://collections/the-clinic-shelf",
+        "tone": "card"
       }
     },
-    "section_x8mrnx": {
-      "type": "section",
+    "founder": {
+      "type": "tss-founder",
       "blocks": {
-        "text_pH8qby": {
-          "type": "text",
-          "name": "t:names.heading",
+        "point_1": {
+          "type": "point",
           "settings": {
-            "text": "<h2>Our shop</h2>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h6",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "title": "Inside clinics daily",
+            "text": "Working alongside BCBAs, technicians and the families they serve, not designing from the outside."
+          }
         },
-        "text_eFMntb": {
-          "type": "text",
+        "point_2": {
+          "type": "point",
           "settings": {
-            "text": "<h2>We believe that every detail matters—our resources transform daily routines into moments of calm, clarity, and professional grace.</h2>",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "h3",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "title": "Design is the day job",
+            "text": "Years of building websites and print materials for small businesses means the templates look finished, not homemade."
+          }
         },
-        "button_TmU98M": {
-          "type": "button",
+        "point_3": {
+          "type": "point",
           "settings": {
-            "label": "Shop now →",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "link",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
+            "title": "Tested on real desks",
+            "text": "Every kit starts as something a clinic or a parent actually asked for, then gets refined until it is easy to use."
+          }
         }
       },
-      "block_order": [
-        "text_pH8qby",
-        "text_eFMntb",
-        "button_TmU98M"
-      ],
-      "name": "t:names.pull_quote",
+      "block_order": ["point_1", "point_2", "point_3"],
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 80,
-        "section_width": "page-width",
-        "section_height": "small",
-        "section_height_custom": 50,
-        "background_color": "{{ settings.color_palette.color1 }}",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 64,
-        "padding-block-end": 64
+        "layout": "full",
+        "eyebrow": "Built from the inside",
+        "heading": "Made by someone who sits in the clinic, not just at the keyboard.",
+        "body": "<p>I spend my days inside ABA clinics with kids, parents and the people who care for them, and I spend the rest of my time designing for the web. The Support Shelf is where those two halves meet: the forms, letters and routines clinics and families actually need, made to look as thoughtful as the work behind them.</p>",
+        "image_alt": "Kyle, founder of The Support Shelf",
+        "name": "Kyle",
+        "role": "Founder, The Support Shelf",
+        "cta_label": "Read the whole story",
+        "cta_link": "shopify://pages/about",
+        "tone": "cream"
       }
     },
-    "media_with_content_xMM9EF": {
-      "type": "media-with-content",
+    "steps": {
+      "type": "tss-steps",
       "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
-          "static": true,
+        "step_1": {
+          "type": "step",
           "settings": {
-            "media_type": "image",
-            "image": "shopify://shop_images/124f8cac0c5cb5e25dc448c1bf045795.png",
-            "link": "",
-            "video_loop": true,
-            "video_autoplay": false,
-            "image_position": "cover",
-            "video_position": "cover"
-          },
-          "blocks": {}
+            "title": "Choose a kit",
+            "text": "Pick the shelf that fits you, then the kit that solves the problem on your desk this week."
+          }
         },
-        "content": {
-          "type": "_content-without-appearance",
-          "static": true,
+        "step_2": {
+          "type": "step",
           "settings": {
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 24
-          },
-          "blocks": {
-            "text_tgFN9e": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<h2>Streamlined communication</h2>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_HqcftD": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Experience smoother workflows and effortless parent engagement with our thoughtfully crafted resources</p>",
-                "width": "fit-content",
-                "max_width": "narrow",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "button_dDjrqQ": {
-              "type": "button",
-              "settings": {
-                "label": "Shop now",
-                "link": "shopify://collections/all",
-                "open_in_new_tab": false,
-                "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_tgFN9e",
-            "text_HqcftD",
-            "button_dDjrqQ"
-          ]
+            "title": "Download instantly",
+            "text": "Your files arrive by email the moment checkout is complete. No waiting, no shipping."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Make it yours",
+            "text": "Swap in your name, logo and wording. It should feel like your clinic or your family made it."
+          }
         }
       },
-      "custom_css": [],
-      "name": "t:names.media_with_text",
+      "block_order": ["step_1", "step_2", "step_3"],
       "settings": {
-        "media_position": "left",
-        "media_width": "wide",
-        "media_height": "60svh",
-        "section_width": "full-width",
-        "extend_media": true,
-        "background_color": "{{ settings.color_palette.color2 }}",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "eyebrow": "How it works",
+        "heading": "Three steps, about ten minutes.",
+        "text": "",
+        "numbered": true,
+        "tone": "sage",
+        "compact": false
       }
     },
-    "media_with_content_nrnzPh": {
-      "type": "media-with-content",
-      "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
-          "static": true,
-          "settings": {
-            "media_type": "image",
-            "image": "shopify://shop_images/d850ff17e5dbd7ca48bebc3d21d51bfd.png",
-            "link": "",
-            "video_loop": true,
-            "video_autoplay": false,
-            "image_position": "cover",
-            "video_position": "cover"
-          },
-          "blocks": {}
-        },
-        "content": {
-          "type": "_content-without-appearance",
-          "static": true,
-          "settings": {
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 24
-          },
-          "blocks": {
-            "text_4BbAqH": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<h2>Crafted for clarity</h2>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_tKc49J": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Our digital templates and welcome kits blend refined design with practical function, enhancing the onboarding journey for clinics and families</p>",
-                "width": "fit-content",
-                "max_width": "narrow",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "button_AP3RH4": {
-              "type": "button",
-              "settings": {
-                "label": "Shop now",
-                "link": "shopify://collections/all",
-                "open_in_new_tab": false,
-                "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_4BbAqH",
-            "text_tKc49J",
-            "button_AP3RH4"
-          ]
-        }
-      },
-      "name": "t:names.media_with_text",
+    "testimonials": {
+      "type": "tss-testimonials",
+      "disabled": true,
       "settings": {
-        "media_position": "right",
-        "media_width": "wide",
-        "media_height": "60svh",
-        "section_width": "full-width",
-        "extend_media": true,
-        "background_color": "{{ settings.color_palette.color1 }}",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "eyebrow": "From the people using them",
+        "heading": "Kind words from clinics and families.",
+        "tone": "cream"
+      }
+    },
+    "email": {
+      "type": "tss-email-capture",
+      "settings": {
+        "heading": "Get new resources first.",
+        "text": "One short email when something new lands on a shelf. No drip sequences, no pressure.",
+        "button_label": "Join",
+        "note": "Unsubscribe any time. We never share your address.",
+        "tone": "cream"
       }
     }
   },
-  "order": [
-    "hero_p9CmMG",
-    "marquee_KN4PYb",
-    "product_list_themegen",
-    "section_x8mrnx",
-    "media_with_content_xMM9EF",
-    "media_with_content_nrnzPh"
-  ]
+  "order": ["hero", "doors", "featured", "founder", "steps", "testimonials", "email"]
 }

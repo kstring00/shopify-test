@@ -1,0 +1,147 @@
+{% doc %}
+  Editorial product card: image, title, one-line benefit, price. Used on shelf pages,
+  the related-products section and the two-door section.
+
+  @param {product} product - The product to render
+  @param {string} [size] - 'feature' for the large first card, 'standard' otherwise
+  @param {boolean} [eager] - Load the image eagerly (above the fold)
+
+  @example
+  {% render 'tss-product-card', product: product, size: 'standard' %}
+{% enddoc %}
+{% liquid
+  assign card_size = size | default: 'standard'
+  assign image = product.featured_media.preview_image
+  assign benefit = product.metafields.custom.one_line_benefit.value
+  if benefit == blank
+    assign benefit = product.description | replace: '</p>', ' ' | strip_html | split: '. ' | first | strip
+    if benefit != blank and benefit.size > 160
+      assign benefit = benefit | truncate: 160
+    endif
+  endif
+  assign loading = 'lazy'
+  if eager
+    assign loading = 'eager'
+  endif
+  assign placeholder_label = 'tss.product.preview_placeholder' | t: title: product.title
+%}
+<article class="tss-product-card tss-card tss-card--lift tss-product-card--{{ card_size }}">
+  <a class="tss-card__link" href="{{ product.url }}" aria-label="{{ product.title | escape }}"></a>
+  <div class="tss-product-card__media">
+    {% if image != blank %}
+      {{
+        image
+        | image_url: width: 1400
+        | image_tag:
+          widths: '360, 520, 720, 900, 1100, 1400',
+          sizes: '(min-width: 990px) 44vw, (min-width: 750px) 50vw, 100vw',
+          loading: loading,
+          alt: image.alt | default: product.title
+      }}
+    {% else %}
+      {% render 'tss-placeholder-media', label: placeholder_label %}
+    {% endif %}
+    {% if product.compare_at_price > product.price %}
+      <span class="tss-product-card__badge">{{ 'tss.product.save' | t }}</span>
+    {% endif %}
+  </div>
+  <div class="tss-product-card__body">
+    <h3 class="tss-product-card__title">{{ product.title }}</h3>
+    {% if benefit != blank %}
+      <p class="tss-product-card__benefit">{{ benefit }}</p>
+    {% endif %}
+    <p class="tss-product-card__price">
+      <span>{{ product.price | money }}</span>
+      {% if product.compare_at_price > product.price %}
+        <s class="tss-muted">{{ product.compare_at_price | money }}</s>
+      {% endif %}
+      <span class="tss-product-card__meta">{{ 'tss.product.instant_download' | t }}</span>
+    </p>
+  </div>
+</article>
+
+{% stylesheet %}
+  .tss-product-card__media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: var(--tss-color-sage-tint);
+    overflow: hidden;
+  }
+
+  .tss-product-card--feature .tss-product-card__media {
+    aspect-ratio: 3 / 2;
+  }
+
+  .tss-product-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform calc(var(--tss-hover-duration) * 2) var(--tss-ease);
+  }
+
+  @media (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .tss-product-card:hover .tss-product-card__media img {
+      transform: scale(1.02);
+    }
+  }
+
+  .tss-product-card__badge {
+    position: absolute;
+    top: 1rem;
+    inset-inline-start: 1rem;
+    padding: 0.35em 0.8em;
+    border-radius: 999px;
+    background: var(--tss-color-cream);
+    font-family: var(--font-subheading--family);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .tss-product-card__body {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1.25rem 1.375rem 1.5rem;
+  }
+
+  .tss-product-card--feature .tss-product-card__body {
+    padding: 1.75rem 2rem 2rem;
+  }
+
+  .tss-product-card__title {
+    margin: 0;
+    font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.625rem);
+    line-height: 1.2;
+  }
+
+  .tss-product-card--feature .tss-product-card__title {
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2.25rem);
+  }
+
+  .tss-product-card__benefit {
+    margin: 0;
+    color: var(--tss-color-muted);
+    max-width: 48ch;
+  }
+
+  .tss-product-card__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin: 0.25rem 0 0;
+    font-family: var(--font-subheading--family);
+    font-weight: 500;
+  }
+
+  .tss-product-card__meta {
+    font-weight: 400;
+    font-size: 0.8125rem;
+    color: var(--tss-color-muted);
+  }
+
+  .tss-product-card__meta::before {
+    content: '·';
+    margin-inline-end: 0.6rem;
+  }
+{% endstylesheet %}

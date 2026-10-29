@@ -1,0 +1,238 @@
+{% comment %}
+  Section contract.
+  Site footer: brand column (name, tagline, short line) plus editable link columns.
+  Policies and the About link appear automatically once they exist in the admin.
+  @example
+  <!-- sections/footer-group.json, above footer-utilities -->
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+  assign tagline = s.tagline | default: settings.tss_tagline
+%}
+<div class="tss-section tss-footer tss-section--{{ s.tone }}">
+  <div class="tss-container tss-footer__grid">
+    <div class="tss-footer__brand">
+      <a class="tss-footer__wordmark" href="{{ routes.root_url }}">
+        {% if settings.logo != blank %}
+          {{ settings.logo | image_url: width: 320 | image_tag: widths: '160, 320', sizes: '160px', loading: 'lazy', alt: shop.name, class: 'tss-footer__logo' }}
+        {% else %}
+          {{ shop.name }}
+        {% endif %}
+      </a>
+      {% if tagline != blank %}<p class="tss-footer__tagline">{{ tagline | escape }}</p>{% endif %}
+      {% if s.blurb != blank %}<p class="tss-footer__blurb tss-muted">{{ s.blurb | escape }}</p>{% endif %}
+      {% if s.show_contact and shop.email != blank %}
+        <p class="tss-footer__contact"><a class="tss-footer__link" href="mailto:{{ shop.email }}">{{ shop.email }}</a></p>
+      {% endif %}
+    </div>
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .tss-footer {
+    padding-block: var(--tss-section-padding-compact) calc(var(--tss-section-padding-compact) * 0.75);
+    border-top: 1px solid var(--tss-color-hairline);
+  }
+
+  .tss-footer__grid {
+    display: grid;
+    gap: 2.5rem 2rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tss-footer__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .tss-footer__grid {
+      grid-template-columns: minmax(0, 2fr) repeat(auto-fit, minmax(10rem, 1fr));
+    }
+  }
+
+  .tss-footer__brand {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+    max-width: 30rem;
+  }
+
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .tss-footer__brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .tss-footer__wordmark {
+    font-family: var(--font-heading--family);
+    font-size: 1.75rem;
+    line-height: 1;
+    color: var(--tss-color-ink);
+    text-decoration: none;
+    justify-self: start;
+  }
+
+  .tss-footer__logo {
+    width: auto;
+    max-height: 2.5rem;
+  }
+
+  .tss-footer__tagline {
+    margin: 0;
+    font-family: var(--font-accent--family);
+    font-style: var(--font-accent--style);
+    font-size: 1.125rem;
+  }
+
+  .tss-footer__blurb,
+  .tss-footer__text {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: var(--line-height--body-loose);
+  }
+
+  .tss-footer__contact {
+    margin: 0.25rem 0 0;
+    font-size: 0.9375rem;
+  }
+
+  .tss-footer__column {
+    display: grid;
+    gap: 0.9rem;
+    align-content: start;
+  }
+
+  .tss-footer__heading {
+    margin: 0;
+    font-family: var(--font-subheading--family);
+    font-weight: 500;
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--tss-color-sage-deep);
+  }
+
+  .tss-footer__links {
+    list-style: none;
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tss-footer__links li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .tss-footer__link {
+    display: inline-block;
+    padding-block: 0.3rem;
+    color: var(--tss-color-ink);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--tss-hover-duration) var(--tss-ease), color var(--tss-hover-duration) var(--tss-ease);
+  }
+
+  .tss-footer__link:hover,
+  .tss-footer__link:focus-visible {
+    color: var(--tss-color-clay);
+    border-color: currentcolor;
+  }
+
+  .tss-footer__badge {
+    padding: 0.15em 0.6em;
+    border-radius: 999px;
+    background: var(--tss-color-sage-tint);
+    font-size: 0.75rem;
+    color: var(--tss-color-sage-deep);
+  }
+
+  .tss-footer__column .tss-field__input,
+  .tss-footer__column .tss-field .button {
+    min-height: 48px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:tss.footer.name",
+  "tag": "div",
+  "class": "section-wrapper",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "_tss-footer-column"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "t:tss.footer.tagline",
+      "info": "t:tss.footer.tagline_info"
+    },
+    {
+      "type": "textarea",
+      "id": "blurb",
+      "label": "t:tss.footer.blurb",
+      "default": "t:tss.footer.blurb_default"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact",
+      "label": "t:tss.footer.show_contact",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "t:tss.common.tone",
+      "options": [
+        { "value": "cream", "label": "t:tss.common.tone_cream" },
+        { "value": "card", "label": "t:tss.common.tone_card" },
+        { "value": "sage", "label": "t:tss.common.tone_sage" }
+      ],
+      "default": "card"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:tss.footer.name",
+      "category": "t:tss.common.category",
+      "blocks": {
+        "shelves": {
+          "type": "_tss-footer-column",
+          "settings": { "heading": "The shelves" },
+          "blocks": {
+            "clinic": { "type": "_tss-footer-link", "settings": { "collection": "the-clinic-shelf" } },
+            "family": { "type": "_tss-footer-link", "settings": { "collection": "the-family-shelf" } },
+            "interactive": { "type": "_tss-footer-link", "settings": { "collection": "the-interactive-shelf", "badge": "Coming soon" } }
+          },
+          "block_order": ["clinic", "family", "interactive"]
+        },
+        "company": {
+          "type": "_tss-footer-column",
+          "settings": { "heading": "The Support Shelf", "show_policies": true },
+          "blocks": {
+            "about": { "type": "_tss-footer-link", "settings": { "page": "about", "page_handle": "about" } },
+            "contact": { "type": "_tss-footer-link", "settings": { "page": "contact", "page_handle": "contact" } }
+          },
+          "block_order": ["about", "contact"]
+        },
+        "email": {
+          "type": "_tss-footer-column",
+          "settings": { "heading": "Get new resources first", "show_email": true, "text": "One short email when something new lands on a shelf." }
+        }
+      },
+      "block_order": ["shelves", "company", "email"]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,159 @@
+{% comment %}
+  Section contract.
+  Testimonials. Renders nothing until at least one testimonial block is added, so it can
+  live in a template (disabled) without showing an empty box.
+  @example
+  <!-- templates/index.json, disabled until real quotes exist -->
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+%}
+{% if section.blocks.size > 0 %}
+  <div class="tss-section tss-testimonials tss-section--{{ s.tone }}">
+    <div class="tss-container">
+      <div class="tss-section-head" data-reveal>
+        {% if s.eyebrow != blank %}<p class="tss-eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+        {% if s.heading != blank %}<h2 class="tss-heading">{{ s.heading | escape }}</h2>{% endif %}
+      </div>
+      <ul class="tss-testimonials__grid" role="list">
+        {% for block in section.blocks %}
+          <li class="tss-testimonial tss-card" data-reveal style="--tss-delay: {{ forloop.index0 | times: 0.08 }}s" {{ block.shopify_attributes }}>
+            <blockquote class="tss-testimonial__quote">
+              <p>{{ block.settings.quote | escape }}</p>
+            </blockquote>
+            <p class="tss-testimonial__who">
+              <span class="tss-testimonial__name">{{ block.settings.name | escape }}</span>
+              {% if block.settings.role != blank %}<span class="tss-muted">{{ block.settings.role | escape }}</span>{% endif %}
+            </p>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% elsif request.design_mode %}
+  <div class="tss-section tss-section--compact">
+    <div class="tss-container">
+      <p class="tss-muted tss-small">{{ 'tss.testimonials.empty_editor_hint' | t }}</p>
+    </div>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .tss-testimonials__grid {
+    list-style: none;
+    display: grid;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tss-testimonials__grid {
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    }
+  }
+
+  .tss-testimonial {
+    padding: 1.75rem;
+    gap: 1.25rem;
+  }
+
+  .tss-testimonial__quote {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+    line-height: 1.4;
+  }
+
+  .tss-testimonial__quote p {
+    margin: 0;
+  }
+
+  .tss-testimonial__quote p::before {
+    content: '\201C';
+    color: var(--tss-color-clay);
+  }
+
+  .tss-testimonial__quote p::after {
+    content: '\201D';
+    color: var(--tss-color-clay);
+  }
+
+  .tss-testimonial__who {
+    display: grid;
+    gap: 0.15rem;
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  .tss-testimonial__name {
+    font-family: var(--font-subheading--family);
+    font-weight: 500;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:tss.testimonials.name",
+  "class": "section-wrapper",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "t:tss.testimonials.testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "t:tss.testimonials.quote"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "t:tss.testimonials.person"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "t:tss.testimonials.role"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:tss.common.eyebrow",
+      "default": "t:tss.testimonials.eyebrow_default"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:tss.common.heading",
+      "default": "t:tss.testimonials.heading_default"
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "t:tss.common.tone",
+      "options": [
+        { "value": "cream", "label": "t:tss.common.tone_cream" },
+        { "value": "card", "label": "t:tss.common.tone_card" },
+        { "value": "sage", "label": "t:tss.common.tone_sage" }
+      ],
+      "default": "sage"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:tss.testimonials.name",
+      "category": "t:tss.common.category"
+    }
+  ]
+}
+{% endschema %}

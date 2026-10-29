@@ -1,0 +1,83 @@
+{% comment %}
+  Section contract.
+  Page intro for About, Contact and other pages: eyebrow, the page's single H1 (page title
+  unless overridden) and a lede paragraph.
+  @example
+  <!-- templates/page.about.json, first section -->
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+  assign heading = s.heading
+  if heading == blank
+    assign heading = page.title
+  endif
+%}
+<div class="tss-section tss-section--compact tss-page-intro tss-section--{{ s.tone }}">
+  <div class="tss-container" data-reveal>
+    {% if s.eyebrow != blank %}<p class="tss-eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+    <h1 class="tss-page-intro__title">{{ heading | escape }}</h1>
+    {% if s.lede != blank %}<div class="tss-lede tss-page-intro__lede">{{ s.lede }}</div>{% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .tss-page-intro__title {
+    margin: 0;
+    max-width: 18ch;
+    font-size: clamp(2.25rem, 1.5rem + 3vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  .tss-page-intro__lede {
+    margin-block-start: var(--tss-stack);
+    max-width: 56ch;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:tss.page_intro.name",
+  "class": "section-wrapper",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:tss.common.eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:tss.common.heading",
+      "info": "t:tss.page_intro.heading_info"
+    },
+    {
+      "type": "richtext",
+      "id": "lede",
+      "label": "t:tss.page_intro.lede"
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "t:tss.common.tone",
+      "options": [
+        { "value": "cream", "label": "t:tss.common.tone_cream" },
+        { "value": "card", "label": "t:tss.common.tone_card" },
+        { "value": "sage", "label": "t:tss.common.tone_sage" }
+      ],
+      "default": "cream"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:tss.page_intro.name",
+      "category": "t:tss.common.category"
+    }
+  ]
+}
+{% endschema %}

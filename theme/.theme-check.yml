@@ -1,0 +1,8 @@
+# Theme Check configuration for The Support Shelf.
+# MatchingTranslations is disabled on purpose: this store sells in English only. The
+# tss.* strings live in locales/en.default.json and en.default.schema.json; Shopify falls
+# back to the default locale for the other locale files Horizon ships, so untranslated
+# copies would only add noise. Re-enable it before translating the store.
+extends: theme-check:recommended
+MatchingTranslations:
+  enabled: false

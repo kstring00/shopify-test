@@ -1,0 +1,175 @@
+{% comment %}
+  Section contract.
+  "Inside this kit" checklist for product pages. Items come from the product's
+  custom.inside_this_kit metafield (one line per item) when it exists; otherwise from the
+  item blocks, each of which can be limited to one product so a single template serves
+  every kit.
+  @example
+  <!-- templates/product.json, right after the main product section -->
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+  assign metafield_lines = product.metafields.custom.inside_this_kit.value | newline_to_br | split: '<br />'
+  assign has_metafield = false
+  if metafield_lines.size > 0 and metafield_lines[0] != blank
+    assign has_metafield = true
+  endif
+  assign intro = s.intro
+  if intro == blank and s.use_description
+    assign intro = product.description
+  endif
+%}
+<div class="tss-section tss-inside tss-section--{{ s.tone }}">
+  <div class="tss-container tss-inside__grid">
+    <div class="tss-inside__copy" data-reveal>
+      {% if s.eyebrow != blank %}<p class="tss-eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+      <h2 class="tss-heading">{{ s.heading | escape }}</h2>
+      {% if intro != blank %}<div class="tss-prose tss-inside__intro">{{ intro }}</div>{% endif %}
+    </div>
+    <div class="tss-inside__list" data-reveal style="--tss-delay: 0.1s">
+      <ul class="tss-checklist tss-checklist--large">
+        {% if has_metafield %}
+          {% for line in metafield_lines %}
+            {% assign clean = line | strip %}
+            {% if clean != blank %}<li>{{ clean | escape }}</li>{% endif %}
+          {% endfor %}
+        {% else %}
+          {% for block in section.blocks %}
+            {% capture show %}{% render 'tss-product-filter', block_product: block.settings.product, current_product: product %}{% endcapture %}
+            {% if show == 'true' %}
+              <li {{ block.shopify_attributes }}>
+                <span>
+                  <strong class="tss-inside__item-title">{{ block.settings.title | escape }}</strong>
+                  {% if block.settings.text != blank %}<span class="tss-muted"> {{ block.settings.text | escape }}</span>{% endif %}
+                </span>
+              </li>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .tss-inside__grid {
+    display: grid;
+    gap: calc(var(--tss-stack) * 1.5);
+    align-items: start;
+  }
+
+  @media screen and (min-width: 990px) {
+    .tss-inside__grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: clamp(2rem, 6vw, 6rem);
+    }
+  }
+
+  .tss-inside__intro {
+    margin-block-start: var(--tss-stack);
+    color: var(--tss-color-muted);
+  }
+
+  .tss-checklist--large {
+    gap: 1rem;
+    padding: 1.5rem;
+    border: 1px solid var(--tss-color-hairline);
+    border-radius: var(--tss-radius-lg);
+    background: var(--tss-color-card);
+  }
+
+  .tss-section--card .tss-checklist--large {
+    background: var(--tss-color-cream);
+  }
+
+  .tss-checklist--large li {
+    font-size: 1.0625rem;
+  }
+
+  .tss-inside__item-title {
+    font-weight: 500;
+    font-family: var(--font-subheading--family);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:tss.inside.name",
+  "class": "section-wrapper",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "blocks": [
+    {
+      "type": "item",
+      "name": "t:tss.inside.item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:tss.common.heading",
+          "default": "t:tss.inside.item_default"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:tss.common.text"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "t:tss.common.only_for_product",
+          "info": "t:tss.common.only_for_product_info"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:tss.inside.metafield_info"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:tss.common.eyebrow",
+      "default": "t:tss.inside.eyebrow_default"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:tss.common.heading",
+      "default": "t:tss.inside.heading_default"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "t:tss.inside.intro"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_description",
+      "label": "t:tss.inside.use_description",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "t:tss.common.tone",
+      "options": [
+        { "value": "cream", "label": "t:tss.common.tone_cream" },
+        { "value": "card", "label": "t:tss.common.tone_card" },
+        { "value": "sage", "label": "t:tss.common.tone_sage" }
+      ],
+      "default": "cream"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:tss.inside.name",
+      "category": "t:tss.common.category"
+    }
+  ]
+}
+{% endschema %}

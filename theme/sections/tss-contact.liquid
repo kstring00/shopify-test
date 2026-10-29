@@ -1,0 +1,152 @@
+{% comment %}
+  Section contract.
+  Contact page body: a short note, the store email as a direct fallback, and Shopify's
+  contact form (which delivers to the store's sender email).
+  @example
+  <!-- templates/page.contact.json -->
+{% endcomment %}
+{% assign s = section.settings %}
+<div class="tss-section tss-contact tss-section--{{ s.tone }}">
+  <div class="tss-container tss-contact__grid">
+    <div class="tss-contact__copy" data-reveal>
+      {% if s.eyebrow != blank %}<p class="tss-eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+      <h2 class="tss-heading">{{ s.heading | escape }}</h2>
+      {% if s.text != blank %}<div class="tss-prose tss-contact__text">{{ s.text }}</div>{% endif %}
+      {% if s.show_email and shop.email != blank %}
+        <p class="tss-contact__email">
+          <span class="tss-muted tss-small">{{ 'tss.contact.prefer_email' | t }}</span><br>
+          <a class="tss-link" href="mailto:{{ shop.email }}">{{ shop.email }}</a>
+        </p>
+      {% endif %}
+      {% if s.response_time != blank %}<p class="tss-small tss-muted">{{ s.response_time | escape }}</p>{% endif %}
+    </div>
+    <div class="tss-contact__form tss-card tss-card--cream" data-reveal style="--tss-delay: 0.1s">
+      {% content_for 'block', type: 'contact-form', id: 'form' %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .tss-contact__grid {
+    display: grid;
+    gap: calc(var(--tss-stack) * 1.5);
+    align-items: start;
+  }
+
+  @media screen and (min-width: 990px) {
+    .tss-contact__grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: clamp(2rem, 6vw, 6rem);
+    }
+  }
+
+  .tss-contact__text {
+    margin-block-start: var(--tss-stack);
+  }
+
+  .tss-contact__email {
+    margin: var(--tss-stack) 0 0.5rem;
+  }
+
+  .tss-contact__form {
+    padding: clamp(1.25rem, 3vw, 2.25rem);
+    overflow: visible;
+  }
+
+  .tss-contact__form .contact-form {
+    width: 100%;
+  }
+
+  .tss-contact__form .contact-form__input {
+    min-height: 52px;
+  }
+
+  .tss-contact__form .button {
+    min-height: 52px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:tss.contact.name",
+  "class": "section-wrapper",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["page"]
+  },
+  "blocks": [
+    {
+      "type": "contact-form"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:tss.common.eyebrow",
+      "default": "t:tss.contact.eyebrow_default"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:tss.common.heading",
+      "default": "t:tss.contact.heading_default"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:tss.common.text",
+      "default": "t:tss.contact.text_default"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_email",
+      "label": "t:tss.contact.show_email",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "response_time",
+      "label": "t:tss.contact.response_time",
+      "default": "t:tss.contact.response_time_default"
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "t:tss.common.tone",
+      "options": [
+        { "value": "cream", "label": "t:tss.common.tone_cream" },
+        { "value": "card", "label": "t:tss.common.tone_card" },
+        { "value": "sage", "label": "t:tss.common.tone_sage" }
+      ],
+      "default": "cream"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:tss.contact.name",
+      "category": "t:tss.common.category",
+      "blocks": {
+        "form": {
+          "type": "contact-form",
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "input_style": "default"
+          },
+          "blocks": {
+            "submit-button": {
+              "type": "contact-form-submit-button",
+              "static": true,
+              "settings": {
+                "label": "Send message",
+                "style_class": "button"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
+{% endschema %}

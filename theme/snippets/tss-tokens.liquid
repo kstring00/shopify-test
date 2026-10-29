@@ -1,0 +1,58 @@
+{% doc %}
+  Brand tokens for The Support Shelf.
+  Every tss-* section and block reads color, spacing, radius and motion from these
+  custom properties. Colors come from the theme's color palette setting so they stay
+  editable in the theme editor; nothing downstream hard-codes a color.
+
+  Palette slots: background = cream, foreground = ink, color1 = sage, color2 = clay,
+  color3 = card cream, color4 = deep sage.
+{% enddoc %}
+{% liquid
+  assign sage = settings.color_palette.color1 | default: settings.color_palette.foreground
+  assign clay = settings.color_palette.color2 | default: settings.color_palette.foreground
+  assign card = settings.color_palette.color3 | default: settings.color_palette.background
+  assign sage_deep = settings.color_palette.color4 | default: sage
+%}
+{% style %}
+  :root {
+    --tss-color-cream: var(--color-background);
+    --tss-color-ink: var(--color-foreground);
+    --tss-color-sage: {{ sage }};
+    --tss-color-sage-rgb: {{ sage.rgb }};
+    --tss-color-clay: {{ clay }};
+    --tss-color-clay-rgb: {{ clay.rgb }};
+    --tss-color-card: {{ card }};
+    --tss-color-card-rgb: {{ card.rgb }};
+    --tss-color-sage-deep: {{ sage_deep }};
+    --tss-color-sage-deep-rgb: {{ sage_deep.rgb }};
+    --tss-color-hairline: rgb(var(--color-foreground-rgb) / 0.12);
+    --tss-color-muted: rgb(var(--color-foreground-rgb) / 0.68);
+    --tss-color-sage-tint: rgb(var(--tss-color-sage-rgb) / 0.16);
+    --tss-color-clay-tint: rgb(var(--tss-color-clay-rgb) / 0.12);
+
+    --tss-section-padding: 56px;
+    --tss-section-padding-compact: 36px;
+    --tss-stack: 20px;
+    --tss-measure: 68ch;
+
+    --tss-radius-sm: 8px;
+    --tss-radius: 14px;
+    --tss-radius-lg: 22px;
+
+    --tss-shadow: 0 1px 2px rgb(var(--color-foreground-rgb) / 0.04), 0 14px 36px -18px rgb(var(--color-foreground-rgb) / 0.18);
+    --tss-shadow-lift: 0 2px 4px rgb(var(--color-foreground-rgb) / 0.05), 0 24px 48px -20px rgb(var(--color-foreground-rgb) / 0.24);
+
+    --tss-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --tss-reveal-distance: 18px;
+    --tss-reveal-duration: 0.7s;
+    --tss-hover-duration: 0.3s;
+  }
+
+  @media screen and (min-width: 750px) {
+    :root {
+      --tss-section-padding: 96px;
+      --tss-section-padding-compact: 56px;
+      --tss-stack: 28px;
+    }
+  }
+{% endstyle %}

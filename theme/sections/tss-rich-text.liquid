@@ -1,0 +1,103 @@
+{% comment %}
+  Section contract.
+  Editorial prose at a 68-character measure, with an optional eyebrow and heading.
+  Used for story passages on the About page.
+  @example
+  <!-- templates/page.about.json -->
+{% endcomment %}
+{% assign s = section.settings %}
+<div class="tss-section tss-rich-text tss-section--{{ s.tone }}{% if s.compact %} tss-section--compact{% endif %}">
+  <div class="tss-container tss-rich-text__grid" data-reveal>
+    <div class="tss-rich-text__head">
+      {% if s.eyebrow != blank %}<p class="tss-eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+      {% if s.heading != blank %}<h2 class="tss-heading">{{ s.heading | escape }}</h2>{% endif %}
+    </div>
+    <div class="tss-prose tss-rich-text__body">{{ s.body }}</div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .tss-rich-text__grid {
+    display: grid;
+    gap: var(--tss-stack);
+    align-items: start;
+  }
+
+  @media screen and (min-width: 990px) {
+    .tss-rich-text__grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: clamp(2rem, 6vw, 6rem);
+    }
+  }
+
+  .tss-rich-text__body {
+    font-size: 1.0625rem;
+  }
+
+  .tss-rich-text__body h2,
+  .tss-rich-text__body h3 {
+    margin-block: 1.5em 0.5em;
+  }
+
+  .tss-rich-text__body blockquote {
+    margin: 1.5em 0;
+    padding-inline-start: 1.25rem;
+    border-inline-start: 2px solid var(--tss-color-clay);
+    font-family: var(--font-heading--family);
+    font-size: 1.25em;
+    line-height: 1.4;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:tss.rich_text.name",
+  "class": "section-wrapper",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:tss.common.eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:tss.common.heading",
+      "default": "t:tss.rich_text.heading_default"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "t:tss.common.text",
+      "default": "t:tss.rich_text.body_default"
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "t:tss.common.tone",
+      "options": [
+        { "value": "cream", "label": "t:tss.common.tone_cream" },
+        { "value": "card", "label": "t:tss.common.tone_card" },
+        { "value": "sage", "label": "t:tss.common.tone_sage" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "checkbox",
+      "id": "compact",
+      "label": "t:tss.common.compact_spacing",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:tss.rich_text.name",
+      "category": "t:tss.common.category"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,109 @@
+{% comment %}
+  Section contract.
+  One-line, low-pressure email capture. Secondary conversion for parents and a soft
+  next step for clinics that are not ready to buy yet.
+  @example
+  <!-- templates/index.json, near the end -->
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+%}
+<div class="tss-section tss-email tss-section--{{ s.tone }} tss-section--compact">
+  <div class="tss-container tss-email__grid" data-reveal>
+    <div class="tss-email__copy">
+      <h2 class="tss-email__heading">{{ s.heading | escape }}</h2>
+      {% if s.text != blank %}<p class="tss-email__text tss-muted">{{ s.text | escape }}</p>{% endif %}
+    </div>
+    <div class="tss-email__form">
+      {% render 'tss-email-form', id: section.id, button_label: s.button_label, note: s.note %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .tss-email__grid {
+    display: grid;
+    gap: var(--tss-stack);
+    align-items: center;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border: 1px solid var(--tss-color-hairline);
+    border-radius: var(--tss-radius-lg);
+    background: var(--tss-color-card);
+  }
+
+  .tss-section--card .tss-email__grid {
+    background: var(--tss-color-cream);
+  }
+
+  @media screen and (min-width: 990px) {
+    .tss-email__grid {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 3rem;
+    }
+  }
+
+  .tss-email__heading {
+    margin: 0;
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2.125rem);
+    line-height: 1.15;
+  }
+
+  .tss-email__text {
+    margin: 0.6rem 0 0;
+    max-width: 44ch;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:tss.email.name",
+  "class": "section-wrapper",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:tss.common.heading",
+      "default": "t:tss.email.heading_default"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "t:tss.common.text",
+      "default": "t:tss.email.text_default"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:tss.common.label",
+      "default": "t:tss.email.button_default"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "t:tss.email.note",
+      "default": "t:tss.email.note_default"
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "t:tss.common.tone",
+      "options": [
+        { "value": "cream", "label": "t:tss.common.tone_cream" },
+        { "value": "card", "label": "t:tss.common.tone_card" },
+        { "value": "sage", "label": "t:tss.common.tone_sage" }
+      ],
+      "default": "cream"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:tss.email.name",
+      "category": "t:tss.common.category"
+    }
+  ]
+}
+{% endschema %}

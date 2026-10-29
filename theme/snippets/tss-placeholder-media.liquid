@@ -1,0 +1,64 @@
+{% doc %}
+  Renders a tasteful stacked-pages placeholder for product or founder imagery that
+  has not been uploaded yet. Announces itself to screen readers with a useful label.
+
+  @param {string} label - Accessible description of what the image will show
+  @param {string} [class] - Extra classes for the wrapper
+  @param {string} [variant] - 'pages' (default) or 'portrait'
+
+  @example
+  {% render 'tss-placeholder-media', label: 'Preview pages for the Clinic Welcome Kit Builder' %}
+{% enddoc %}
+{% liquid
+  assign placeholder_variant = variant | default: 'pages'
+%}
+<div
+  class="tss-placeholder tss-placeholder--{{ placeholder_variant }} {{ class }}"
+  role="img"
+  aria-label="{{ label | escape }}"
+>
+  {% if placeholder_variant == 'portrait' %}
+    <div class="tss-placeholder__portrait" aria-hidden="true">
+      <span class="tss-placeholder__head"></span>
+      <span class="tss-placeholder__shoulders"></span>
+    </div>
+  {% else %}
+    <div class="tss-placeholder__sheet" aria-hidden="true"></div>
+    <div class="tss-placeholder__sheet tss-placeholder__sheet--clay" aria-hidden="true"></div>
+    <div class="tss-placeholder__sheet" aria-hidden="true"></div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .tss-placeholder__portrait {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    background: radial-gradient(circle at 50% 38%, rgb(var(--tss-color-sage-rgb) / 0.32), transparent 55%);
+  }
+
+  .tss-placeholder__head {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    width: 24%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--tss-color-cream);
+    transform: translateX(-50%);
+    box-shadow: var(--tss-shadow);
+  }
+
+  .tss-placeholder__shoulders {
+    position: absolute;
+    left: 50%;
+    top: 58%;
+    width: 60%;
+    aspect-ratio: 2 / 1;
+    border-radius: 50% 50% 0 0;
+    background: var(--tss-color-cream);
+    transform: translateX(-50%);
+    box-shadow: var(--tss-shadow);
+  }
+{% endstylesheet %}

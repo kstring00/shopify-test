@@ -1,0 +1,95 @@
+{% doc %}
+  Plain-language guarantee line placed right under add-to-cart. Links to the store's
+  refund policy when one exists, otherwise to the contact page.
+{% enddoc %}
+{% liquid
+  assign s = block.settings
+  assign policy_url = shop.refund_policy.url
+  assign link_label = s.link_label
+  if policy_url == blank
+    assign policy_url = s.fallback_link | default: '/pages/contact'
+    assign link_label = s.fallback_link_label | default: link_label
+  endif
+%}
+<p class="tss-guarantee" {{ block.shopify_attributes }}>
+  <span class="svg-wrapper tss-guarantee__icon" aria-hidden="true">{{ 'icon-checkmark-burst.svg' | inline_asset_content }}</span>
+  <span>
+    {{ s.text | escape }}
+    {% if link_label != blank %}
+      <a href="{{ policy_url }}">{{ link_label | escape }}</a>
+    {% endif %}
+  </span>
+</p>
+
+{% stylesheet %}
+  .tss-guarantee {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: var(--line-height--body-loose);
+    color: var(--tss-color-muted);
+  }
+
+  .tss-guarantee__icon {
+    flex-shrink: 0;
+    margin-top: 0.15em;
+    color: var(--tss-color-sage-deep);
+  }
+
+  .tss-guarantee__icon > svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .tss-guarantee__icon .burst {
+    display: none;
+  }
+
+  .tss-guarantee a {
+    color: var(--tss-color-ink);
+    text-decoration: underline;
+    text-decoration-color: rgb(var(--tss-color-clay-rgb) / 0.7);
+    text-underline-offset: 0.18em;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:tss.guarantee.name",
+  "tag": null,
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "t:tss.common.text",
+      "default": "t:tss.guarantee.text_default"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:tss.guarantee.link_label",
+      "info": "t:tss.guarantee.link_info",
+      "default": "t:tss.guarantee.link_label_default"
+    },
+    {
+      "type": "text",
+      "id": "fallback_link_label",
+      "label": "t:tss.guarantee.fallback_label",
+      "default": "t:tss.guarantee.fallback_label_default"
+    },
+    {
+      "type": "url",
+      "id": "fallback_link",
+      "label": "t:tss.guarantee.fallback_link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:tss.guarantee.name",
+      "category": "t:tss.common.category"
+    }
+  ]
+}
+{% endschema %}

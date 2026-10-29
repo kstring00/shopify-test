@@ -1,0 +1,52 @@
+{% doc %}
+  Low-pressure newsletter form (Shopify customer form). Shared by the email capture
+  section, the shelf empty state and the footer.
+
+  @param {string} id - Unique id suffix for the input and messages
+  @param {string} [button_label] - Submit label; defaults to the translated "Join"
+  @param {string} [note] - Small print shown under the field
+
+  @example
+  {% render 'tss-email-form', id: section.id %}
+{% enddoc %}
+{% liquid
+  assign form_id = 'tss-email-' | append: id
+  assign label = button_label | default: 'tss.email.button' | t
+%}
+{% form 'customer', id: form_id, class: 'tss-email-form' %}
+  <input type="hidden" name="contact[tags]" value="newsletter">
+  <div class="tss-field">
+    <label for="{{ form_id }}-input" class="visually-hidden">{{ 'tss.email.label' | t }}</label>
+    <input
+      id="{{ form_id }}-input"
+      class="tss-field__input"
+      type="email"
+      name="contact[email]"
+      autocomplete="email"
+      autocapitalize="off"
+      autocorrect="off"
+      placeholder="{{ 'tss.email.placeholder' | t }}"
+      required
+      {% if form.errors %}
+        aria-invalid="true"
+        aria-describedby="{{ form_id }}-error"
+      {% elsif form.posted_successfully? %}
+        aria-describedby="{{ form_id }}-success"
+      {% endif %}
+    >
+    <button type="submit" class="button">{{ label }}</button>
+  </div>
+  {% if form.errors %}
+    <p id="{{ form_id }}-error" class="tss-form-note" role="alert">
+      <span class="svg-wrapper icon-error">{{ 'icon-error.svg' | inline_asset_content }}</span>
+      {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+    </p>
+  {% elsif form.posted_successfully? %}
+    <p id="{{ form_id }}-success" class="tss-form-note" role="status">
+      <span class="svg-wrapper icon-success">{{ 'icon-checkmark.svg' | inline_asset_content }}</span>
+      {{ 'tss.email.success' | t }}
+    </p>
+  {% elsif note != blank %}
+    <p class="tss-form-note tss-muted">{{ note }}</p>
+  {% endif %}
+{% endform %}

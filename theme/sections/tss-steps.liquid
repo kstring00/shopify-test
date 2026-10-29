@@ -1,0 +1,178 @@
+{% comment %}
+  Section contract.
+  Numbered (or plain) list of short points: "How it works" on the homepage, the pricing
+  principles on the About page. Each block is one step with a title and a sentence.
+  @example
+  <!-- templates/index.json: three steps, numbered -->
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+%}
+<div class="tss-section tss-steps tss-section--{{ s.tone }}{% if s.compact %} tss-section--compact{% endif %}">
+  <div class="tss-container">
+    <div class="tss-section-head tss-section-head--split" data-reveal>
+      <div>
+        {% if s.eyebrow != blank %}<p class="tss-eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+        {% if s.heading != blank %}<h2 class="tss-heading">{{ s.heading | escape }}</h2>{% endif %}
+      </div>
+      {% if s.text != blank %}<div class="tss-lede">{{ s.text }}</div>{% endif %}
+    </div>
+    <ol class="tss-steps__list{% if s.numbered %} tss-steps__list--numbered{% endif %}" role="list">
+      {% for block in section.blocks %}
+        <li class="tss-steps__item" data-reveal style="--tss-delay: {{ forloop.index0 | times: 0.08 }}s" {{ block.shopify_attributes }}>
+          <h3 class="tss-steps__title">{{ block.settings.title | escape }}</h3>
+          {% if block.settings.text != blank %}<p class="tss-steps__text">{{ block.settings.text | escape }}</p>{% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+</div>
+
+{% stylesheet %}
+  .tss-steps__list {
+    list-style: none;
+    counter-reset: step;
+    display: grid;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tss-steps__list {
+      grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  .tss-steps__item {
+    counter-increment: step;
+    padding-block-start: 1.25rem;
+    border-top: 1px solid var(--tss-color-hairline);
+  }
+
+  .tss-steps__list--numbered .tss-steps__item::before {
+    content: counter(step, decimal-leading-zero);
+    display: block;
+    margin-block-end: 1rem;
+    font-family: var(--font-accent--family);
+    font-style: var(--font-accent--style);
+    font-size: 1.5rem;
+    color: var(--tss-color-clay);
+  }
+
+  .tss-steps__title {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  }
+
+  .tss-steps__text {
+    margin: 0;
+    color: var(--tss-color-muted);
+    line-height: var(--line-height--body-loose);
+    max-width: 38ch;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:tss.steps.name",
+  "class": "section-wrapper",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "step",
+      "name": "t:tss.steps.step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:tss.common.heading",
+          "default": "t:tss.steps.step_title_default"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "t:tss.common.text"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:tss.common.eyebrow",
+      "default": "t:tss.steps.eyebrow_default"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:tss.common.heading",
+      "default": "t:tss.steps.heading_default"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:tss.common.text"
+    },
+    {
+      "type": "checkbox",
+      "id": "numbered",
+      "label": "t:tss.steps.numbered",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "t:tss.common.tone",
+      "options": [
+        { "value": "cream", "label": "t:tss.common.tone_cream" },
+        { "value": "card", "label": "t:tss.common.tone_card" },
+        { "value": "sage", "label": "t:tss.common.tone_sage" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "checkbox",
+      "id": "compact",
+      "label": "t:tss.common.compact_spacing",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:tss.steps.name",
+      "category": "t:tss.common.category",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Choose a kit",
+            "text": "Pick the shelf that fits you, then the kit that solves the problem on your desk this week."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Download instantly",
+            "text": "Your files arrive by email the moment checkout is complete. No waiting, no shipping."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Make it yours",
+            "text": "Swap in your name, logo and wording. It should feel like your clinic or your family made it."
+          }
+        }
+      },
+      "block_order": ["step_1", "step_2", "step_3"]
+    }
+  ]
+}
+{% endschema %}

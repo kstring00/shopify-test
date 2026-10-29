@@ -1,11 +1,48 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Horizon",
+    "theme_name": "The Support Shelf",
     "theme_version": "4.2.0",
     "theme_author": "Shopify",
-    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_documentation_url": "https://github.com/kstring00/shopify-test#readme",
     "theme_support_url": "https://support.shopify.com/"
+  },
+  {
+    "name": "t:tss.settings.group",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "t:tss.settings.intro"
+      },
+      {
+        "type": "text",
+        "id": "tss_tagline",
+        "label": "t:tss.settings.tagline",
+        "default": "Thoughtfully made tools for the people who care."
+      },
+      {
+        "type": "header",
+        "content": "t:tss.settings.seo_header"
+      },
+      {
+        "type": "text",
+        "id": "tss_home_meta_title",
+        "label": "t:tss.settings.home_meta_title",
+        "info": "t:tss.settings.home_meta_title_info"
+      },
+      {
+        "type": "textarea",
+        "id": "tss_home_meta_description",
+        "label": "t:tss.settings.home_meta_description",
+        "info": "t:tss.settings.home_meta_description_info"
+      },
+      {
+        "type": "image_picker",
+        "id": "tss_share_image",
+        "label": "t:tss.settings.share_image",
+        "info": "t:tss.settings.share_image_info"
+      }
+    ]
   },
   {
     "name": "t:names.logo_and_favicon",

@@ -1,0 +1,124 @@
+{% comment %}
+  Section contract.
+  Collection (shelf) header: shelf name as the page H1, the one-sentence promise from the
+  collection description (or a per-shelf fallback block), and a quiet meta line.
+  @example
+  <!-- templates/collection.json, first section -->
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+  assign promise = collection.description | strip_html | strip
+  if promise == blank
+    for block in section.blocks
+      if block.settings.collection != blank and block.settings.collection.handle == collection.handle
+        assign promise = block.settings.promise
+        break
+      endif
+    endfor
+  endif
+  assign count = collection.products_count
+%}
+<div class="tss-section tss-section--compact tss-shelf-header tss-section--{{ s.tone }}">
+  <div class="tss-container tss-shelf-header__grid" data-reveal>
+    <div>
+      {% if s.eyebrow != blank %}<p class="tss-eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+      <h1 class="tss-shelf-header__title">{{ collection.title | escape }}</h1>
+    </div>
+    <div class="tss-shelf-header__aside">
+      {% if promise != blank %}<p class="tss-lede">{{ promise }}</p>{% endif %}
+      <p class="tss-shelf-header__meta tss-small tss-muted">
+        {% if count > 0 %}{{ 'tss.shelf.resource_count' | t: count: count }} ·{% endif %}
+        {{ s.meta | escape }}
+      </p>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .tss-shelf-header__grid {
+    display: grid;
+    gap: var(--tss-stack);
+    align-items: end;
+    padding-block-end: var(--tss-stack);
+    border-bottom: 1px solid var(--tss-color-hairline);
+  }
+
+  @media screen and (min-width: 990px) {
+    .tss-shelf-header__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 4rem;
+    }
+  }
+
+  .tss-shelf-header__title {
+    margin: 0;
+    font-size: clamp(2.25rem, 1.5rem + 3vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+  }
+
+  .tss-shelf-header__meta {
+    margin: 0.75rem 0 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:tss.shelf.header_name",
+  "class": "section-wrapper",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "blocks": [
+    {
+      "type": "promise",
+      "name": "t:tss.shelf.fallback_promise",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "t:tss.common.collection"
+        },
+        {
+          "type": "textarea",
+          "id": "promise",
+          "label": "t:tss.doors.promise",
+          "info": "t:tss.shelf.fallback_promise_info"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:tss.common.eyebrow",
+      "default": "t:tss.shelf.eyebrow_default"
+    },
+    {
+      "type": "text",
+      "id": "meta",
+      "label": "t:tss.shelf.meta",
+      "default": "t:tss.shelf.meta_default"
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "t:tss.common.tone",
+      "options": [
+        { "value": "cream", "label": "t:tss.common.tone_cream" },
+        { "value": "card", "label": "t:tss.common.tone_card" },
+        { "value": "sage", "label": "t:tss.common.tone_sage" }
+      ],
+      "default": "cream"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:tss.shelf.header_name",
+      "category": "t:tss.common.category"
+    }
+  ]
+}
+{% endschema %}

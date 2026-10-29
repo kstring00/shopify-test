@@ -1,0 +1,352 @@
+{% comment %}
+  Section contract.
+  Founder credibility. "full" layout: photo, story and three credibility points (homepage
+  and About page). "note" layout: a short signed note with a small portrait (product page).
+  @example
+  <!-- templates/index.json ("full"), templates/product.json ("note") -->
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+  assign image = s.image
+  assign alt = s.image_alt | default: s.name
+%}
+<div class="tss-section tss-founder tss-founder--{{ s.layout }} tss-section--{{ s.tone }}{% if s.layout == 'note' %} tss-section--compact{% endif %}">
+  <div class="tss-container {% if s.layout == 'note' %}tss-container--narrow{% endif %}">
+    {% if s.layout == 'note' %}
+      <aside class="tss-founder__note tss-card tss-card--cream" data-reveal aria-label="{{ s.eyebrow | escape }}">
+        <div class="tss-founder__portrait tss-founder__portrait--small">
+          {% if image != blank %}
+            {{ image | image_url: width: 240 | image_tag: widths: '120, 240', sizes: '96px', loading: 'lazy', alt: alt }}
+          {% else %}
+            {% render 'tss-placeholder-media', label: alt, variant: 'portrait' %}
+          {% endif %}
+        </div>
+        <div class="tss-founder__note-body">
+          {% if s.eyebrow != blank %}<p class="tss-eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+          {% if s.heading != blank %}<h2 class="tss-founder__note-heading">{{ s.heading | escape }}</h2>{% endif %}
+          <div class="tss-prose">{{ s.body }}</div>
+          <p class="tss-founder__sign">
+            <span class="tss-founder__name">{{ s.name | escape }}</span>
+            {% if s.role != blank %}<span class="tss-muted"> · {{ s.role | escape }}</span>{% endif %}
+          </p>
+        </div>
+      </aside>
+    {% else %}
+      <div class="tss-founder__grid">
+        <div class="tss-founder__visual" data-reveal>
+          <div class="tss-founder__portrait">
+            {% if image != blank %}
+              {{
+                image
+                | image_url: width: 1200
+                | image_tag:
+                  widths: '400, 600, 800, 1000, 1200',
+                  sizes: '(min-width: 990px) 38vw, 100vw',
+                  loading: 'lazy',
+                  alt: alt
+              }}
+            {% else %}
+              {% render 'tss-placeholder-media', label: alt, variant: 'portrait' %}
+            {% endif %}
+          </div>
+          <p class="tss-founder__caption">
+            <span class="tss-founder__name">{{ s.name | escape }}</span>
+            {% if s.role != blank %}<span class="tss-muted">{{ s.role | escape }}</span>{% endif %}
+          </p>
+        </div>
+        <div class="tss-founder__copy" data-reveal style="--tss-delay: 0.1s">
+          {% if s.eyebrow != blank %}<p class="tss-eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+          <h2 class="tss-heading tss-heading--wide">{{ s.heading | escape }}</h2>
+          <div class="tss-prose tss-founder__body">{{ s.body }}</div>
+          {% if section.blocks.size > 0 %}
+            <ol class="tss-founder__points" role="list">
+              {% for block in section.blocks %}
+                <li class="tss-founder__point" {{ block.shopify_attributes }}>
+                  <h3 class="tss-founder__point-title">{{ block.settings.title | escape }}</h3>
+                  {% if block.settings.text != blank %}<p>{{ block.settings.text | escape }}</p>{% endif %}
+                </li>
+              {% endfor %}
+            </ol>
+          {% endif %}
+          {% if s.cta_label != blank and s.cta_link != blank %}
+            <div class="tss-actions">
+              <a class="tss-link" href="{{ s.cta_link }}">
+                {{ s.cta_label | escape }}
+                <svg class="tss-link__arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">{% render 'icon', icon: 'arrow' %}</svg>
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .tss-founder__grid {
+    display: grid;
+    gap: calc(var(--tss-stack) * 1.5);
+    align-items: start;
+  }
+
+  @media screen and (min-width: 990px) {
+    .tss-founder__grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: clamp(2rem, 6vw, 6rem);
+    }
+  }
+
+  .tss-founder__portrait {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--tss-radius-lg);
+    overflow: hidden;
+    background: var(--tss-color-card);
+    box-shadow: var(--tss-shadow);
+  }
+
+  .tss-founder__portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .tss-founder__caption {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.75rem;
+    margin: 0.9rem 0 0;
+    font-size: 0.9375rem;
+  }
+
+  .tss-founder__name {
+    font-family: var(--font-subheading--family);
+    font-weight: 500;
+  }
+
+  .tss-founder__body {
+    margin-block-start: var(--tss-stack);
+  }
+
+  .tss-founder__points {
+    list-style: none;
+    counter-reset: point;
+    display: grid;
+    gap: 1rem;
+    margin: calc(var(--tss-stack) * 1.25) 0 0;
+    padding: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tss-founder__points {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .tss-founder__point {
+    counter-increment: point;
+    padding: 1.25rem 1.25rem 1.25rem;
+    border-top: 1px solid var(--tss-color-hairline);
+  }
+
+  .tss-founder__point::before {
+    content: counter(point, decimal-leading-zero);
+    display: block;
+    margin-block-end: 0.75rem;
+    font-family: var(--font-accent--family);
+    font-style: var(--font-accent--style);
+    font-size: 1.25rem;
+    color: var(--tss-color-clay);
+  }
+
+  .tss-founder__point-title {
+    margin: 0 0 0.4rem;
+    font-family: var(--font-subheading--family);
+    font-weight: 500;
+    font-size: 1.0625rem;
+  }
+
+  .tss-founder__point p {
+    margin: 0;
+    color: var(--tss-color-muted);
+    font-size: 0.9375rem;
+    line-height: var(--line-height--body-loose);
+  }
+
+  /* Note layout */
+  .tss-founder__note {
+    display: grid;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    border-radius: var(--tss-radius-lg);
+  }
+
+  @media screen and (min-width: 750px) {
+    .tss-founder__note {
+      grid-template-columns: 6rem minmax(0, 1fr);
+      gap: 2rem;
+      padding: 2rem 2.25rem;
+    }
+  }
+
+  .tss-founder__portrait--small {
+    width: 6rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    box-shadow: none;
+    border: 1px solid var(--tss-color-hairline);
+  }
+
+  .tss-founder__note-body .tss-eyebrow {
+    margin-block-end: 0.5rem;
+  }
+
+  .tss-founder__note-heading {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);
+  }
+
+  .tss-founder__sign {
+    margin: 1rem 0 0;
+    font-size: 0.9375rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:tss.founder.name",
+  "class": "section-wrapper",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "point",
+      "name": "t:tss.founder.point",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:tss.common.heading",
+          "default": "t:tss.founder.point_title_default"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "t:tss.common.text"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "t:tss.founder.layout",
+      "options": [
+        { "value": "full", "label": "t:tss.founder.layout_full" },
+        { "value": "note", "label": "t:tss.founder.layout_note" }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:tss.common.eyebrow",
+      "default": "t:tss.founder.eyebrow_default"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:tss.common.heading",
+      "default": "t:tss.founder.heading_default"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "t:tss.common.text",
+      "default": "t:tss.founder.body_default"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:tss.founder.photo",
+      "info": "t:tss.founder.photo_info"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "t:tss.common.image_alt",
+      "default": "t:tss.founder.image_alt_default"
+    },
+    {
+      "type": "text",
+      "id": "name",
+      "label": "t:tss.founder.founder_name",
+      "default": "t:tss.founder.name_default"
+    },
+    {
+      "type": "text",
+      "id": "role",
+      "label": "t:tss.founder.role",
+      "default": "t:tss.founder.role_default"
+    },
+    {
+      "type": "header",
+      "content": "t:tss.common.secondary_link"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:tss.common.label"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "t:tss.common.link"
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "t:tss.common.tone",
+      "options": [
+        { "value": "cream", "label": "t:tss.common.tone_cream" },
+        { "value": "card", "label": "t:tss.common.tone_card" },
+        { "value": "sage", "label": "t:tss.common.tone_sage" }
+      ],
+      "default": "cream"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:tss.founder.name",
+      "category": "t:tss.common.category",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "title": "Inside clinics daily",
+            "text": "Working alongside BCBAs, technicians and the families they serve, not designing from the outside."
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "title": "Design is the day job",
+            "text": "Years of building websites and print materials for small businesses means the templates look finished, not homemade."
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "title": "Tested on real desks",
+            "text": "Every kit starts as something a clinic or a parent actually asked for, then gets refined until it is easy to use."
+          }
+        }
+      },
+      "block_order": ["point_1", "point_2", "point_3"]
+    }
+  ]
+}
+{% endschema %}

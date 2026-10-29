@@ -1,0 +1,342 @@
+{% comment %}
+  Section contract.
+  Two doors into the store: The Clinic Shelf (first, larger) and The Family Shelf.
+  Each door carries a one-line promise and its own CTA. Also used on the 404 page.
+  @example
+  <!-- templates/index.json, after the hero -->
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+%}
+<div class="tss-section tss-doors tss-section--{{ s.tone }}{% if s.compact %} tss-section--compact{% endif %}">
+  <div class="tss-container">
+    {% if s.eyebrow != blank or s.heading != blank %}
+      <div class="tss-section-head" data-reveal>
+        {% if s.eyebrow != blank %}<p class="tss-eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+        {% if s.heading != blank %}<h2 class="tss-heading">{{ s.heading | escape }}</h2>{% endif %}
+      </div>
+    {% endif %}
+    <div class="tss-doors__grid">
+      {% for block in section.blocks %}
+        {% liquid
+          assign b = block.settings
+          assign collection = b.collection
+          assign href = b.link
+          if href == blank and collection != blank
+            assign href = collection.url
+          endif
+          if href == blank
+            assign href = routes.collections_url
+          endif
+          assign title = b.title
+          if title == blank and collection != blank
+            assign title = collection.title
+          endif
+          assign promise = b.promise
+          if promise == blank and collection != blank
+            assign promise = collection.description | strip_html
+          endif
+          assign count = 0
+          if collection != blank
+            assign count = collection.products_count
+          endif
+        %}
+        <article
+          class="tss-door tss-card tss-card--lift tss-door--{{ b.size }} tss-door--tone-{{ b.door_tone }}"
+          data-reveal
+          style="--tss-delay: {{ forloop.index0 | times: 0.1 }}s"
+          {{ block.shopify_attributes }}
+        >
+          <a class="tss-card__link" href="{{ href }}" aria-label="{{ b.cta_label | default: title | escape }}"></a>
+          <div class="tss-door__media">
+            {% if b.image != blank %}
+              {{
+                b.image
+                | image_url: width: 1400
+                | image_tag:
+                  widths: '400, 600, 800, 1000, 1400',
+                  sizes: '(min-width: 990px) 60vw, 100vw',
+                  loading: 'lazy',
+                  alt: b.image_alt | default: title
+              }}
+            {% else %}
+              {% assign placeholder_label = 'tss.doors.placeholder_alt' | t: title: title %}
+              {% render 'tss-placeholder-media', label: placeholder_label %}
+            {% endif %}
+          </div>
+          <div class="tss-door__body">
+            <p class="tss-eyebrow">
+              {{ b.audience | escape }}
+              {% if count > 0 %}
+                <span class="tss-door__count">{{ 'tss.doors.resource_count' | t: count: count }}</span>
+              {% endif %}
+            </p>
+            <h3 class="tss-door__title">{{ title | escape }}</h3>
+            {% if promise != blank %}
+              <p class="tss-door__promise">{{ promise }}</p>
+            {% endif %}
+            <span class="tss-link tss-door__cta" aria-hidden="true">
+              {{ b.cta_label | escape }}
+              <svg class="tss-link__arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">{% render 'icon', icon: 'arrow' %}</svg>
+            </span>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .tss-doors__grid {
+    display: grid;
+    gap: var(--tss-stack);
+  }
+
+  @media screen and (min-width: 750px) {
+    .tss-doors__grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .tss-door--large {
+      grid-column: span 3;
+    }
+
+    .tss-door--standard {
+      grid-column: span 2;
+    }
+
+    .tss-door--large:only-child,
+    .tss-door--standard:only-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .tss-door--tone-sage {
+    background: var(--tss-color-sage-tint);
+  }
+
+  .tss-door--tone-clay {
+    background: var(--tss-color-clay-tint);
+  }
+
+  .tss-door__media {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .tss-door--large .tss-door__media {
+    aspect-ratio: 16 / 8;
+  }
+
+  .tss-door__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .tss-door__body {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1.5rem 1.5rem 1.75rem;
+  }
+
+  @media screen and (min-width: 990px) {
+    .tss-door--large .tss-door__body {
+      padding: 2.25rem 2.5rem 2.5rem;
+    }
+  }
+
+  .tss-door__body .tss-eyebrow {
+    margin: 0;
+    flex-wrap: wrap;
+  }
+
+  .tss-door__count {
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--tss-color-muted);
+  }
+
+  .tss-door__count::before {
+    content: '·';
+    margin-inline-end: 0.6em;
+  }
+
+  .tss-door__title {
+    margin: 0;
+    font-size: clamp(1.625rem, 1.3rem + 1.2vw, 2.5rem);
+    line-height: 1.1;
+  }
+
+  .tss-door--large .tss-door__title {
+    font-size: clamp(1.875rem, 1.4rem + 1.8vw, 3rem);
+  }
+
+  .tss-door__promise {
+    margin: 0;
+    max-width: 52ch;
+    color: var(--tss-color-muted);
+    line-height: var(--line-height--body-loose);
+  }
+
+  .tss-door__cta {
+    justify-self: start;
+    margin-block-start: 0.25rem;
+    min-height: 0;
+  }
+
+  .tss-door:hover .tss-door__cta {
+    color: var(--tss-color-clay);
+    border-color: currentcolor;
+  }
+
+  .tss-door:hover .tss-link__arrow {
+    transform: translateX(0.2em);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:tss.doors.name",
+  "class": "section-wrapper",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "door",
+      "name": "t:tss.doors.door",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "t:tss.common.collection",
+          "info": "t:tss.doors.collection_info"
+        },
+        {
+          "type": "text",
+          "id": "audience",
+          "label": "t:tss.doors.audience",
+          "default": "t:tss.doors.audience_default"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:tss.common.heading"
+        },
+        {
+          "type": "textarea",
+          "id": "promise",
+          "label": "t:tss.doors.promise",
+          "info": "t:tss.doors.promise_info"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "t:tss.common.label",
+          "default": "t:tss.doors.cta_default"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:tss.common.link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:tss.common.image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "t:tss.common.image_alt"
+        },
+        {
+          "type": "select",
+          "id": "size",
+          "label": "t:tss.doors.size",
+          "options": [
+            { "value": "large", "label": "t:tss.doors.size_large" },
+            { "value": "standard", "label": "t:tss.doors.size_standard" }
+          ],
+          "default": "standard"
+        },
+        {
+          "type": "select",
+          "id": "door_tone",
+          "label": "t:tss.common.tone",
+          "options": [
+            { "value": "card", "label": "t:tss.common.tone_card" },
+            { "value": "sage", "label": "t:tss.common.tone_sage" },
+            { "value": "clay", "label": "t:tss.common.tone_clay" }
+          ],
+          "default": "card"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:tss.common.eyebrow",
+      "default": "t:tss.doors.eyebrow_default"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:tss.common.heading",
+      "default": "t:tss.doors.heading_default"
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "t:tss.common.tone",
+      "options": [
+        { "value": "cream", "label": "t:tss.common.tone_cream" },
+        { "value": "card", "label": "t:tss.common.tone_card" },
+        { "value": "sage", "label": "t:tss.common.tone_sage" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "checkbox",
+      "id": "compact",
+      "label": "t:tss.common.compact_spacing",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:tss.doors.name",
+      "category": "t:tss.common.category",
+      "blocks": {
+        "clinic": {
+          "type": "door",
+          "settings": {
+            "collection": "the-clinic-shelf",
+            "audience": "For clinics",
+            "cta_label": "Browse the Clinic Shelf",
+            "size": "large",
+            "door_tone": "sage"
+          }
+        },
+        "family": {
+          "type": "door",
+          "settings": {
+            "collection": "the-family-shelf",
+            "audience": "For families",
+            "cta_label": "Browse the Family Shelf",
+            "size": "standard",
+            "door_tone": "card"
+          }
+        }
+      },
+      "block_order": ["clinic", "family"]
+    }
+  ]
+}
+{% endschema %}

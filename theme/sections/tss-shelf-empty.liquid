@@ -1,0 +1,133 @@
+{% comment %}
+  Section contract.
+  Empty state for a shelf with no live products (for example The Interactive Shelf before
+  launch): a heading, a sentence and the email capture. Per-shelf copy comes from blocks
+  matched to a collection; the section settings are the fallback.
+  @example
+  <!-- templates/collection.json, after tss-shelf-grid -->
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+  assign heading = s.heading
+  assign text = s.text
+  for block in section.blocks
+    if block.settings.collection != blank and block.settings.collection.handle == collection.handle
+      assign heading = block.settings.heading | default: heading
+      assign text = block.settings.text | default: text
+      break
+    endif
+  endfor
+%}
+{% if collection.products_count == 0 %}
+  <div class="tss-section tss-shelf-empty tss-section--{{ s.tone }}">
+    <div class="tss-container tss-container--narrow" data-reveal>
+      <div class="tss-shelf-empty__card tss-card">
+        <p class="tss-eyebrow">{{ s.eyebrow | escape }}</p>
+        <h2 class="tss-heading tss-shelf-empty__heading">{{ heading | escape }}</h2>
+        {% if text != blank %}<p class="tss-lede">{{ text | escape }}</p>{% endif %}
+        <div class="tss-shelf-empty__form">
+          {% render 'tss-email-form', id: section.id, button_label: s.button_label, note: s.note %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .tss-shelf-empty__card {
+    gap: 1rem;
+    padding: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .tss-shelf-empty__heading {
+    max-width: 20ch;
+  }
+
+  .tss-shelf-empty__form {
+    margin-block-start: 0.5rem;
+    max-width: 34rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:tss.shelf.empty_name",
+  "class": "section-wrapper",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "blocks": [
+    {
+      "type": "message",
+      "name": "t:tss.shelf.empty_message",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "t:tss.common.collection"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:tss.common.heading"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "t:tss.common.text"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:tss.common.eyebrow",
+      "default": "t:tss.shelf.empty_eyebrow_default"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:tss.common.heading",
+      "default": "t:tss.shelf.empty_heading_default"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "t:tss.common.text",
+      "default": "t:tss.shelf.empty_text_default"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:tss.common.label",
+      "default": "t:tss.email.button_default"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "t:tss.email.note",
+      "default": "t:tss.email.note_default"
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "t:tss.common.tone",
+      "options": [
+        { "value": "cream", "label": "t:tss.common.tone_cream" },
+        { "value": "card", "label": "t:tss.common.tone_card" },
+        { "value": "sage", "label": "t:tss.common.tone_sage" }
+      ],
+      "default": "cream"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:tss.shelf.empty_name",
+      "category": "t:tss.common.category"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,77 @@
+{% doc %}
+  One footer link. Points at a page (hidden automatically if the page does not exist yet),
+  a collection, or any URL.
+{% enddoc %}
+{% liquid
+  assign s = block.settings
+  assign href = s.url
+  assign label = s.label
+  assign show = true
+  if s.page != blank
+    assign href = s.page.url
+    if label == blank
+      assign label = s.page.title
+    endif
+  elsif s.collection != blank
+    assign href = s.collection.url
+    if label == blank
+      assign label = s.collection.title
+    endif
+  elsif s.page_handle != blank and href == blank
+    assign show = false
+  endif
+  if href == blank or label == blank
+    assign show = false
+  endif
+%}
+{% if show %}
+  <li {{ block.shopify_attributes }}>
+    <a class="tss-footer__link" href="{{ href }}">{{ label | escape }}</a>
+    {% if s.badge != blank %}<span class="tss-footer__badge">{{ s.badge | escape }}</span>{% endif %}
+  </li>
+{% elsif request.design_mode %}
+  <li class="tss-muted tss-small" {{ block.shopify_attributes }}>{{ 'tss.footer.link_hidden_hint' | t }}</li>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:tss.footer.link",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "t:tss.common.label",
+      "info": "t:tss.footer.label_info"
+    },
+    {
+      "type": "page",
+      "id": "page",
+      "label": "t:tss.footer.page",
+      "info": "t:tss.footer.page_info"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:tss.common.collection"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "t:tss.common.link"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "t:tss.footer.badge",
+      "info": "t:tss.footer.badge_info"
+    },
+    {
+      "type": "text",
+      "id": "page_handle",
+      "label": "t:tss.footer.page_handle",
+      "info": "t:tss.footer.page_handle_info"
+    }
+  ]
+}
+{% endschema %}

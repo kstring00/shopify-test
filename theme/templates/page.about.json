@@ -1,0 +1,81 @@
+{
+  "sections": {
+    "intro": {
+      "type": "tss-page-intro",
+      "settings": {
+        "eyebrow": "About The Support Shelf",
+        "heading": "Thoughtfully made tools for the people who care.",
+        "lede": "<p>The Support Shelf is a small library of editable resources for ABA clinics and the families they serve. It exists because the people doing this work deserve materials that look as thoughtful as they are.</p>",
+        "tone": "cream"
+      }
+    },
+    "founder": {
+      "type": "tss-founder",
+      "blocks": {
+        "point_1": { "type": "point", "settings": { "title": "Inside clinics daily", "text": "Working alongside BCBAs, technicians and the families they serve, not designing from the outside." } },
+        "point_2": { "type": "point", "settings": { "title": "Design is the day job", "text": "Years of building websites and print materials for small businesses means the templates look finished, not homemade." } },
+        "point_3": { "type": "point", "settings": { "title": "Tested on real desks", "text": "Every kit starts as something a clinic or a parent actually asked for, then gets refined until it is easy to use." } }
+      },
+      "block_order": ["point_1", "point_2", "point_3"],
+      "settings": {
+        "layout": "full",
+        "eyebrow": "Who is behind it",
+        "heading": "Hi, I'm Kyle.",
+        "body": "<p>I spend my days inside ABA clinics with kids, their parents and the people who care for them. I spend the rest of my time designing websites and print materials for small businesses. For a long time those felt like two separate lives.</p><p>Then I kept noticing the same thing: clinics running on hand-made forms, parents handed photocopies, and good people spending their evenings in a word processor trying to make something look right. The Support Shelf is where my two halves meet. Every kit is something a clinic or a family actually asked for, built to look finished on the first day and easy to make your own.</p>",
+        "image_alt": "Kyle, founder of The Support Shelf",
+        "name": "Kyle",
+        "role": "Founder, The Support Shelf",
+        "cta_label": "",
+        "tone": "cream"
+      }
+    },
+    "why": {
+      "type": "tss-rich-text",
+      "settings": {
+        "eyebrow": "Why this exists",
+        "heading": "Good materials change how a family feels in the first week.",
+        "body": "<p>A clear welcome letter, a schedule a child can read, a newsletter that actually gets opened. None of it is complicated, but all of it takes time that clinics and parents rarely have. These kits give that time back without asking anyone to settle for something that looks thrown together.</p><p>Everything here is a format, not advice. You bring the clinical judgment and the knowledge of your own kid or your own families. The templates just make sure what you already know shows up on the page looking the way it deserves to.</p>",
+        "tone": "card",
+        "compact": false
+      }
+    },
+    "principles": {
+      "type": "tss-steps",
+      "blocks": {
+        "p1": { "type": "step", "settings": { "title": "Fair value, not inflated bundles", "text": "Prices reflect the time a kit saves you and the care that went into it. Nothing is padded with filler to justify a bigger number." } },
+        "p2": { "type": "step", "settings": { "title": "You own what you buy", "text": "Editable files you keep, use and reuse across your own clinic or home. No subscriptions, no locked features." } },
+        "p3": { "type": "step", "settings": { "title": "Made to be changed", "text": "Every kit expects you to put your own name, wording and judgment on it. That is the point, not a workaround." } }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": {
+        "eyebrow": "Equal exchange",
+        "heading": "The pricing principle behind every shelf.",
+        "text": "<p>An equal exchange means you should feel you got at least as much as you paid, every time.</p>",
+        "numbered": false,
+        "tone": "cream",
+        "compact": false
+      }
+    },
+    "faith": {
+      "type": "tss-rich-text",
+      "settings": {
+        "eyebrow": "One more thing",
+        "heading": "Rooted in something steadier than a trend.",
+        "body": "<p>This work is rooted in my faith, and in the belief that the people who care for others deserve to be cared for too. You will not find that preached on these pages, but it is why the shelf exists and why it will stay honest.</p>",
+        "tone": "sage",
+        "compact": true
+      }
+    },
+    "email": {
+      "type": "tss-email-capture",
+      "settings": {
+        "heading": "Get new resources first.",
+        "text": "One short email when something new lands on a shelf. No drip sequences, no pressure.",
+        "button_label": "Join",
+        "note": "Unsubscribe any time. We never share your address.",
+        "tone": "cream"
+      }
+    }
+  },
+  "order": ["intro", "founder", "why", "principles", "faith", "email"]
+}
