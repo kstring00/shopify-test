@@ -3,13 +3,27 @@
     "header": {
       "type": "tss-shelf-header",
       "blocks": {
-        "clinic": { "type": "promise", "settings": { "collection": "the-clinic-shelf", "promise": "Professional, customizable resources for ABA clinics and administrators." } },
-        "family": { "type": "promise", "settings": { "collection": "the-family-shelf", "promise": "Practical, beautifully made tools for parents and caregivers." } },
-        "interactive": { "type": "promise", "settings": { "collection": "the-interactive-shelf", "promise": "Customizable digital tools and resource builders. Coming soon." } }
+        "family": {
+          "type": "promise",
+          "settings": {
+            "collection": "the-family-shelf",
+            "promise": "Practical, beautifully made tools for parents and caregivers."
+          }
+        },
+        "interactive": {
+          "type": "promise",
+          "settings": {
+            "collection": "the-interactive-shelf",
+            "promise": "Customizable digital tools and resource builders. Coming soon."
+          }
+        }
       },
-      "block_order": ["clinic", "family", "interactive"],
+      "block_order": [
+        "family",
+        "interactive"
+      ],
       "settings": {
-        "eyebrow": "The shelves",
+        "eyebrow": "The Support Shelf",
         "meta": "Editable templates · instant download",
         "tone": "cream"
       }
@@ -34,7 +48,9 @@
           }
         }
       },
-      "block_order": ["interactive"],
+      "block_order": [
+        "interactive"
+      ],
       "settings": {
         "eyebrow": "Nothing on this shelf yet",
         "heading": "New resources are on the way.",
@@ -48,12 +64,17 @@
       "type": "tss-email-capture",
       "settings": {
         "heading": "Get new resources first.",
-        "text": "One short email when something new lands on a shelf. No drip sequences, no pressure.",
+        "text": "One short email when something new lands on the shelf. No drip sequences, no pressure.",
         "button_label": "Join",
         "note": "Unsubscribe any time. We never share your address.",
         "tone": "card"
       }
     }
   },
-  "order": ["header", "grid", "empty", "email"]
+  "order": [
+    "header",
+    "grid",
+    "empty",
+    "email"
+  ]
 }

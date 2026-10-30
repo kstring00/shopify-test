@@ -31,7 +31,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>The page you were looking for has moved or never existed. The two shelves below are the best places to start.</p>",
+            "text": "<p>The page you were looking for has moved or never existed. The Family Shelf is the best place to start.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
@@ -55,8 +55,8 @@
           "type": "button",
           "name": "t:names.button",
           "settings": {
-            "label": "Browse the Clinic Shelf",
-            "link": "shopify://collections/the-clinic-shelf",
+            "label": "Browse the Family Shelf",
+            "link": "shopify://collections/the-family-shelf",
             "open_in_new_tab": false,
             "style_class": "button",
             "width": "fit-content",
@@ -67,7 +67,11 @@
           "blocks": {}
         }
       },
-      "block_order": ["heading", "text", "button"],
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
       "settings": {
         "content_direction": "column",
         "section_width": "page-width",
@@ -83,10 +87,23 @@
     "doors": {
       "type": "tss-two-doors",
       "blocks": {
-        "clinic": { "type": "door", "settings": { "collection": "the-clinic-shelf", "audience": "For clinics", "title": "The Clinic Shelf", "promise": "Onboarding kits, parent communication and operations templates for small clinics.", "cta_label": "Browse the Clinic Shelf", "image_alt": "Clinic Shelf templates", "size": "large", "door_tone": "sage" } },
-        "family": { "type": "door", "settings": { "collection": "the-family-shelf", "audience": "For families", "title": "The Family Shelf", "promise": "Visual routines and everyday tools for parents and caregivers.", "cta_label": "Browse the Family Shelf", "image_alt": "Family Shelf templates", "size": "standard", "door_tone": "card" } }
+        "family": {
+          "type": "door",
+          "settings": {
+            "collection": "the-family-shelf",
+            "audience": "For families",
+            "title": "The Family Shelf",
+            "promise": "Visual routines and everyday tools for parents and caregivers.",
+            "cta_label": "Browse the Family Shelf",
+            "image_alt": "Family Shelf templates",
+            "size": "large",
+            "door_tone": "sage"
+          }
+        }
       },
-      "block_order": ["clinic", "family"],
+      "block_order": [
+        "family"
+      ],
       "settings": {
         "eyebrow": "",
         "heading": "",
@@ -95,5 +112,8 @@
       }
     }
   },
-  "order": ["main", "doors"]
+  "order": [
+    "main",
+    "doors"
+  ]
 }

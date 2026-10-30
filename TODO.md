@@ -6,15 +6,19 @@ draft, not yours: read it once and make it true.
 
 ## Store setup (Shopify admin, not the theme)
 
-- [ ] **Products are Draft.** Set Clinic Welcome Kit Builder, Parent Newsletter Studio and Daily
-      Routine Kit to Active, or product pages and the shelves show empty in any preview.
+- [ ] **Products are Draft.** Set Daily Routine Kit to Active, or its product page and the Family
+      Shelf show empty in any preview.
+- [ ] **Clinic products and collection.** The store still holds Clinic Welcome Kit Builder, Parent
+      Newsletter Studio and The Clinic Shelf collection. The theme no longer links to them; archive
+      or delete them in the admin so they never surface in search or /collections/all.
 - [ ] **Product descriptions** still say "In development. Final contents, format, and delivery
       details will be confirmed before launch." The product page shows the description as the intro
       of "Inside this kit"; rewrite it before launch.
 - [ ] **Delivery format and mechanism.** The theme says "Editable [format] template. Instant
       delivery after purchase." Decide the format (Canva, Google Docs, PowerPoint...) and the
       delivery app (for example Shopify Digital Downloads), then replace `[format]` in
-      Home > Featured kit and Product > Details > Format & what's included.
+      Home > Featured kit and Product > Details > Format & what's included. The FAQ answer "Do I
+      need special software?" also promises a quick-start note; keep it true or edit it.
 - [ ] **Refund policy, Terms of service.** Only a privacy policy exists. Create refund and terms
       under Settings > Policies; the footer and the product-page guarantee link pick them up
       automatically. Decide the refund window; the guarantee copy currently avoids a number.
@@ -24,8 +28,8 @@ draft, not yours: read it once and make it true.
 - [ ] **Contact page** exists (handle `contact`, template page.contact). Submit the form once
       after publishing to confirm delivery to the store sender email (kyle@stringhamwebdesign.com,
       Settings > Notifications > Sender email).
-- [ ] **Navigation.** Main menu is Home / Catalog / Contact. Suggested: The Clinic Shelf, The
-      Family Shelf, About, Contact (Online Store > Navigation > Main menu).
+- [ ] **Navigation.** Main menu is Home / Catalog / Contact. Suggested: The Family Shelf, About,
+      Contact (Online Store > Navigation > Main menu).
 - [ ] **Remove the 4 generator sample products** (tagged "Sample Product") and the "Default example
       products" collection so they do not show on /collections/all or in search.
 - [ ] **Store meta description** (Online Store > Preferences). The theme setting
@@ -41,7 +45,7 @@ draft, not yours: read it once and make it true.
       media in the admin; the gallery is a thumbnail carousel sized for them. The first image is
       also used on shelf cards and the homepage featured kit.
 - [ ] **Hero image** — Home > Shelf hero (optional; placeholder renders until then).
-- [ ] **Shelf door images** — Home > Two shelves > each door (optional).
+- [ ] **Shelf door image** — 404 > Shelf doors (optional).
 - [ ] **Logo** — Theme settings > Logo and favicon. Wordmark text is used until then.
 - [ ] **Favicon** (32px PNG) — Theme settings > Logo and favicon.
 - [ ] **Social share image** (1200 × 630) — Theme settings > The Support Shelf.
@@ -50,21 +54,22 @@ draft, not yours: read it once and make it true.
 ## Homepage copy to confirm
 
 - [ ] Hero headline and subhead (Home > Shelf hero).
-- [ ] Three proof points: "Built inside ABA clinics", "Editable, not just a PDF", "Instant download".
-- [ ] Founder credibility points (Inside clinics daily / Design is the day job / Tested on real
-      desks). Spell out real credentials if you want them named.
+- [ ] Three proof points: "Made by someone who works with kids every day", "Editable, not just a
+      PDF", "Instant download".
+- [ ] Founder credibility points (In the room every day / Design is the day job / Made for real
+      homes). Spell out real credentials if you want them named.
 - [ ] Featured kit included list (three generic lines today).
 - [ ] Testimonials: section is built and hidden. Enable Home > Testimonials and add blocks once
       you have quotes with permission.
 
 ## Product page copy to confirm
 
-- [ ] "Inside this kit" items for each product (Product > Inside this kit). These are plausible
-      drafts, not confirmed contents.
-- [ ] "Who it's for" cards for each product.
-- [ ] FAQ answers (editable? delivered how? safe for families? refunds? multi-location use).
+- [ ] "Inside this kit" items for the Daily Routine Kit (Product > Inside this kit). These are
+      plausible drafts, not confirmed contents.
+- [ ] "Who it's for" cards.
+- [ ] FAQ answers (editable? delivered how? safe for my child? refunds? software needed?).
 - [ ] Guarantee line wording.
-- [ ] Trust strip wording (No client data / No treatment recommendations / You customize everything).
+- [ ] Trust strip wording (No personal data / Not medical advice / You customize everything).
 
 ## About page copy to confirm
 

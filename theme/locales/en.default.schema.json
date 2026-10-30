@@ -1269,35 +1269,35 @@
     "hero": {
       "name": "Shelf hero",
       "proof_point": "Proof point",
-      "proof_default": "Built inside ABA clinics",
+      "proof_default": "Made by someone who works with kids every day",
       "eyebrow_default": "Thoughtfully made tools for the people who care",
-      "heading_default": "Resources for ABA clinics and the families they serve.",
-      "subheading_default": "<p>Editable welcome kits, communication templates and visual routines, made by someone who works inside ABA clinics every day and designs for the web the rest of the time.</p>",
-      "cta_default": "Browse the Clinic Shelf",
-      "secondary_default": "For families",
+      "heading_default": "Calmer mornings, clearer routines, and a little more room to breathe.",
+      "subheading_default": "<p>Editable visual routines, schedules and everyday tools for parents and caregivers, made by someone who works with kids inside ABA clinics every day and designs for the web the rest of the time.</p>",
+      "cta_default": "Browse the Family Shelf",
+      "secondary_default": "Meet the person behind it",
       "image_info": "A real photo or mockup, at least 1200px tall. A placeholder shows until you upload one.",
-      "image_alt_default": "Preview of The Support Shelf templates spread across a desk",
+      "image_alt_default": "Preview of The Support Shelf routine cards spread across a kitchen table",
       "placeholder_alt": "Preview of The Support Shelf templates"
     },
     "doors": {
-      "name": "Two shelves",
+      "name": "Shelf doors",
       "door": "Shelf door",
       "collection_info": "Pick the collection. Title, promise and link fall back to it when the fields below are empty.",
       "audience": "Audience label",
-      "audience_default": "For clinics",
+      "audience_default": "For families",
       "promise": "One-line promise",
       "promise_info": "Leave blank to use the collection description.",
       "cta_default": "Browse the shelf",
       "size": "Size",
       "size_large": "Large (3 of 5 columns)",
       "size_standard": "Standard (2 of 5 columns)",
-      "eyebrow_default": "Two shelves",
-      "heading_default": "Pick the shelf that fits the work in front of you."
+      "eyebrow_default": "Browse",
+      "heading_default": "Pick the tool that fits the part of the day that is hardest."
     },
     "featured": {
       "name": "Featured kit",
       "product_info": "Draft products are not visible on the storefront; set the product to Active to see it here.",
-      "eyebrow_default": "Featured on the Clinic Shelf",
+      "eyebrow_default": "On the Family Shelf",
       "cta_default": "See what's inside the kit",
       "fallback_link": "Fallback link",
       "fallback_link_info": "Used when no product is selected or the product is not yet active."
@@ -1311,19 +1311,19 @@
       "format_line_default": "Editable [format] template. Instant delivery after purchase.",
       "included": "Included list",
       "included_info": "Overridden by the product's custom.whats_included metafield (one item per line) when it exists.",
-      "included_default": "<ul><li>Change the wording, colors and logo so it feels like yours.</li><li>Download link on the confirmation page and in your email, right after checkout.</li><li>Print it, email it, or share it on a screen as often as you need.</li></ul>",
+      "included_default": "<ul><li>Change the wording, pictures and colors so it fits your child and your home.</li><li>Download link on the confirmation page and in your email, right after checkout.</li><li>Print it, stick it on the fridge, or show it on a tablet, as often as you need.</li></ul>",
       "note": "Small print"
     },
     "founder": {
       "name": "Founder story",
       "point": "Credibility point",
-      "point_title_default": "Inside clinics daily",
+      "point_title_default": "In the room every day",
       "layout": "Layout",
       "layout_full": "Full story with points",
       "layout_note": "Short signed note",
       "eyebrow_default": "Built from the inside",
-      "heading_default": "Made by someone who sits in the clinic, not just at the keyboard.",
-      "body_default": "<p>I spend my days inside ABA clinics with kids, parents and the people who care for them, and the rest of my time designing for the web. The Support Shelf is where those two halves meet.</p>",
+      "heading_default": "Made by someone who sits with kids and parents every day, not just at a keyboard.",
+      "body_default": "<p>I spend my days inside ABA clinics with kids, their parents and the people who care for them, and the rest of my time designing for the web. The Support Shelf is where those two halves meet.</p>",
       "photo": "Founder photo",
       "photo_info": "Portrait, at least 1000px tall. A placeholder shows until you upload one.",
       "image_alt_default": "Kyle, founder of The Support Shelf",
@@ -1343,7 +1343,7 @@
     "email": {
       "name": "Email capture",
       "heading_default": "Get new resources first.",
-      "text_default": "One short email when something new lands on a shelf. No drip sequences, no pressure.",
+      "text_default": "One short email when something new lands on the shelf. No drip sequences, no pressure.",
       "button_default": "Join",
       "note": "Small print",
       "note_default": "Unsubscribe any time. We never share your address."
@@ -1353,9 +1353,9 @@
       "testimonial": "Testimonial",
       "quote": "Quote",
       "person": "Name",
-      "role": "Role or clinic",
-      "eyebrow_default": "From the people using them",
-      "heading_default": "Kind words from clinics and families."
+      "role": "Role or relationship (for example, parent of a 6-year-old)",
+      "eyebrow_default": "From the families using them",
+      "heading_default": "Kind words from parents and caregivers."
     },
     "benefit": {
       "name": "One-line benefit",
@@ -1376,17 +1376,17 @@
       "name": "Trust strip",
       "item_title": "Title",
       "item_text": "Text",
-      "title_1_default": "No client data",
-      "text_1_default": "Nothing in these files touches your records or theirs.",
-      "title_2_default": "No treatment recommendations",
-      "text_2_default": "Formats and wording, not clinical guidance.",
+      "title_1_default": "No personal data",
+      "text_1_default": "Nothing in these files collects or stores anything about your child.",
+      "title_2_default": "Not medical advice",
+      "text_2_default": "Formats and wording, not treatment recommendations. You know your child.",
       "title_3_default": "You customize everything",
-      "text_3_default": "Every line is yours to change before it reaches a family."
+      "text_3_default": "Every line is yours to change before it goes on the wall."
     },
     "inside": {
       "name": "Inside this kit",
       "item": "Item",
-      "item_default": "Welcome letter template",
+      "item_default": "Morning routine board",
       "metafield_info": "Items come from the product's custom.inside_this_kit metafield (one line per item) when it exists. Otherwise the blocks below are used; limit each block to a product so one template serves every kit.",
       "eyebrow_default": "What you get",
       "heading_default": "Inside this kit",
@@ -1400,16 +1400,16 @@
       "kind_fit": "Made for",
       "kind_stretch": "Also works for",
       "label_default": "Made for",
-      "title_default": "Clinic owners onboarding new families",
+      "title_default": "Parents who want calmer mornings and bedtimes",
       "eyebrow_default": "Who it's for",
-      "heading_default": "Built for a specific desk."
+      "heading_default": "Built for a real home."
     },
     "faq": {
       "name": "FAQ",
       "question": "Question",
       "question_default": "Is this editable, or just a PDF?",
       "answer": "Answer",
-      "answer_default": "<p>Editable. You get template files you can open and change: wording, colors, logo, the lot.</p>",
+      "answer_default": "<p>Editable. You get template files you can open and change: wording, pictures, colors, the lot.</p>",
       "eyebrow_default": "Questions",
       "heading_default": "Before you buy",
       "contact_label": "Contact link label",
@@ -1426,7 +1426,7 @@
       "header_name": "Shelf header",
       "fallback_promise": "Fallback promise",
       "fallback_promise_info": "Used only when the collection has no description.",
-      "eyebrow_default": "The shelves",
+      "eyebrow_default": "The Support Shelf",
       "meta": "Meta line",
       "meta_default": "Editable templates · instant download",
       "grid_name": "Shelf products",
@@ -1452,7 +1452,7 @@
       "name": "Contact form",
       "eyebrow_default": "Send a note",
       "heading_default": "We read every message.",
-      "text_default": "<p>Tell us what you are working on and what would help.</p>",
+      "text_default": "<p>Tell us what is hard right now and what would help.</p>",
       "show_email": "Show the store email as a direct option",
       "response_time": "Response time line",
       "response_time_default": "Replies usually within two business days."
@@ -1475,7 +1475,7 @@
       "tagline": "Tagline",
       "tagline_info": "Leave blank to use the tagline from Theme settings.",
       "blurb": "Short description",
-      "blurb_default": "Editable resources for ABA clinics and the families they serve.",
+      "blurb_default": "Editable routines and everyday tools for parents and caregivers.",
       "show_contact": "Show the store email"
     },
     "settings": {

@@ -1,7 +1,7 @@
 {% comment %}
   Section contract.
-  Two doors into the store: The Clinic Shelf (first, larger) and The Family Shelf.
-  Each door carries a one-line promise and its own CTA. Also used on the 404 page.
+  Doors into the shelves: The Family Shelf (first, larger) and, when it launches, The
+  Interactive Shelf. Each door carries a one-line promise and its own CTA. Used on the 404 page.
   @example
   <!-- templates/index.json, after the hero -->
 {% endcomment %}
@@ -314,28 +314,28 @@
       "name": "t:tss.doors.name",
       "category": "t:tss.common.category",
       "blocks": {
-        "clinic": {
-          "type": "door",
-          "settings": {
-            "collection": "the-clinic-shelf",
-            "audience": "For clinics",
-            "cta_label": "Browse the Clinic Shelf",
-            "size": "large",
-            "door_tone": "sage"
-          }
-        },
         "family": {
           "type": "door",
           "settings": {
             "collection": "the-family-shelf",
             "audience": "For families",
             "cta_label": "Browse the Family Shelf",
+            "size": "large",
+            "door_tone": "sage"
+          }
+        },
+        "interactive": {
+          "type": "door",
+          "settings": {
+            "collection": "the-interactive-shelf",
+            "audience": "Coming soon",
+            "cta_label": "Get notified",
             "size": "standard",
             "door_tone": "card"
           }
         }
       },
-      "block_order": ["clinic", "family"]
+      "block_order": ["family", "interactive"]
     }
   ]
 }

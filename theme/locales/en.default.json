@@ -378,7 +378,7 @@
     },
     "email": {
       "label": "Email address",
-      "placeholder": "you@yourclinic.com",
+      "placeholder": "you@example.com",
       "button": "Join",
       "success": "You are on the list. We only write when something new is ready."
     },
@@ -397,7 +397,7 @@
       }
     },
     "featured": {
-      "fallback_title": "Clinic Welcome Kit Builder"
+      "fallback_title": "Daily Routine Kit"
     },
     "testimonials": {
       "empty_editor_hint": "Testimonials: add a testimonial block to show this section. It stays hidden on the live store until then."

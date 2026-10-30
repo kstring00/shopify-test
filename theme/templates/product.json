@@ -120,7 +120,7 @@
               "settings": {
                 "heading": "Format & what's included",
                 "format_line": "Editable [format] template. Instant delivery after purchase.",
-                "included": "<ul><li>Change the wording, colors and logo so it feels like yours.</li><li>Download link on the confirmation page and in your email, right after checkout.</li><li>Print it, email it, or share it on a screen as often as you need.</li></ul>",
+                "included": "<ul><li>Change the wording, pictures and colors so it fits your child and your home.</li><li>Download link on the confirmation page and in your email, right after checkout.</li><li>Print it, stick it on the fridge, or show it on a tablet, as often as you need.</li></ul>",
                 "note": ""
               },
               "blocks": {}
@@ -198,17 +198,25 @@
             "trust": {
               "type": "tss-trust-strip",
               "settings": {
-                "title_1": "No client data",
-                "text_1": "Nothing in these files touches your records or theirs.",
-                "title_2": "No treatment recommendations",
-                "text_2": "Formats and wording, not clinical guidance.",
+                "title_1": "No personal data",
+                "text_1": "Nothing in these files collects or stores anything about your child.",
+                "title_2": "Not medical advice",
+                "text_2": "Formats and wording, not treatment recommendations. You know your child.",
                 "title_3": "You customize everything",
-                "text_3": "Every line is yours to change before it reaches a family."
+                "text_3": "Every line is yours to change before it goes on the wall."
               },
               "blocks": {}
             }
           },
-          "block_order": ["title", "benefit", "price", "format", "buy_buttons", "guarantee", "trust"]
+          "block_order": [
+            "title",
+            "benefit",
+            "price",
+            "format",
+            "buy_buttons",
+            "guarantee",
+            "trust"
+          ]
         }
       },
       "block_order": [],
@@ -227,22 +235,41 @@
     "inside": {
       "type": "tss-inside-kit",
       "blocks": {
-        "clinic_1": { "type": "item", "settings": { "title": "Welcome letter", "text": "A warm first page families actually read.", "product": "clinic-welcome-kit-builder" } },
-        "clinic_2": { "type": "item", "settings": { "title": "What to expect in week one", "text": "Sessions, check-ins and who to call.", "product": "clinic-welcome-kit-builder" } },
-        "clinic_3": { "type": "item", "settings": { "title": "Clinic policies one-pager", "text": "Attendance, cancellations and communication in plain language.", "product": "clinic-welcome-kit-builder" } },
-        "clinic_4": { "type": "item", "settings": { "title": "Meet the team page", "text": "Photos and roles so faces have names from day one.", "product": "clinic-welcome-kit-builder" } },
-        "clinic_5": { "type": "item", "settings": { "title": "Parent FAQ sheet", "text": "The questions every new family asks, answered once.", "product": "clinic-welcome-kit-builder" } },
-        "clinic_6": { "type": "item", "settings": { "title": "Contact and scheduling card", "text": "Print it, stick it on the fridge.", "product": "clinic-welcome-kit-builder" } },
-        "news_1": { "type": "item", "settings": { "title": "Monthly newsletter layout", "text": "Headline, highlights, dates and a note from the team.", "product": "parent-newsletter-studio" } },
-        "news_2": { "type": "item", "settings": { "title": "Reminder and update cards", "text": "Short formats for schedule changes and quick wins.", "product": "parent-newsletter-studio" } },
-        "news_3": { "type": "item", "settings": { "title": "Seasonal variations", "text": "Swap the palette without rebuilding the page.", "product": "parent-newsletter-studio" } },
-        "news_4": { "type": "item", "settings": { "title": "Reusable content blocks", "text": "Drop-in sections so no issue starts from blank.", "product": "parent-newsletter-studio" } },
-        "routine_1": { "type": "item", "settings": { "title": "Morning routine board", "text": "Picture-first steps for the start of the day.", "product": "daily-routine-kit" } },
-        "routine_2": { "type": "item", "settings": { "title": "Bedtime routine board", "text": "Wind-down steps in the same calm style.", "product": "daily-routine-kit" } },
-        "routine_3": { "type": "item", "settings": { "title": "Transition cards", "text": "First-then cards for the moments that are hardest.", "product": "daily-routine-kit" } },
-        "routine_4": { "type": "item", "settings": { "title": "Blank editable cards", "text": "Add the steps that are unique to your home.", "product": "daily-routine-kit" } }
+        "routine_1": {
+          "type": "item",
+          "settings": {
+            "title": "Morning routine board",
+            "text": "Picture-first steps for the start of the day."
+          }
+        },
+        "routine_2": {
+          "type": "item",
+          "settings": {
+            "title": "Bedtime routine board",
+            "text": "Wind-down steps in the same calm style."
+          }
+        },
+        "routine_3": {
+          "type": "item",
+          "settings": {
+            "title": "Transition cards",
+            "text": "First-then cards for the moments that are hardest."
+          }
+        },
+        "routine_4": {
+          "type": "item",
+          "settings": {
+            "title": "Blank editable cards",
+            "text": "Add the steps that are unique to your home."
+          }
+        }
       },
-      "block_order": ["clinic_1", "clinic_2", "clinic_3", "clinic_4", "clinic_5", "clinic_6", "news_1", "news_2", "news_3", "news_4", "routine_1", "routine_2", "routine_3", "routine_4"],
+      "block_order": [
+        "routine_1",
+        "routine_2",
+        "routine_3",
+        "routine_4"
+      ],
       "settings": {
         "eyebrow": "What you get",
         "heading": "Inside this kit",
@@ -254,17 +281,32 @@
     "who": {
       "type": "tss-who-for",
       "blocks": {
-        "clinic_fit": { "type": "audience", "settings": { "kind": "fit", "label": "Made for", "title": "Clinic owners and admins onboarding new families", "text": "You want the first week to feel organized and warm without building every document from scratch.", "product": "clinic-welcome-kit-builder" } },
-        "clinic_stretch": { "type": "audience", "settings": { "kind": "stretch", "label": "Also works for", "title": "Lead BCBAs standardizing intake across locations", "text": "One kit, one look, every site. Change the clinic name and you are done.", "product": "clinic-welcome-kit-builder" } },
-        "news_fit": { "type": "audience", "settings": { "kind": "fit", "label": "Made for", "title": "Clinics that want to stay in touch with parents monthly", "text": "You know communication matters and you do not have a designer on staff.", "product": "parent-newsletter-studio" } },
-        "news_stretch": { "type": "audience", "settings": { "kind": "stretch", "label": "Also works for", "title": "Office managers sending schedule and policy updates", "text": "Short-format cards for the messages that cannot wait for next month.", "product": "parent-newsletter-studio" } },
-        "routine_fit": { "type": "audience", "settings": { "kind": "fit", "label": "Made for", "title": "Parents and caregivers who want calmer mornings and bedtimes", "text": "Visual steps your child can follow, in a style you are happy to have on the wall.", "product": "daily-routine-kit" } },
-        "routine_stretch": { "type": "audience", "settings": { "kind": "stretch", "label": "Also works for", "title": "Clinicians sending routines home", "text": "Hand families something consistent with what they practice in session.", "product": "daily-routine-kit" } }
+        "fit": {
+          "type": "audience",
+          "settings": {
+            "kind": "fit",
+            "label": "Made for",
+            "title": "Parents and caregivers who want calmer mornings and bedtimes",
+            "text": "Visual steps your child can follow, in a style you are happy to have on the wall."
+          }
+        },
+        "stretch": {
+          "type": "audience",
+          "settings": {
+            "kind": "stretch",
+            "label": "Also works for",
+            "title": "Grandparents, sitters and anyone who helps with the routine",
+            "text": "Everyone follows the same steps, so your child gets the same calm day no matter who is helping."
+          }
+        }
       },
-      "block_order": ["clinic_fit", "clinic_stretch", "news_fit", "news_stretch", "routine_fit", "routine_stretch"],
+      "block_order": [
+        "fit",
+        "stretch"
+      ],
       "settings": {
         "eyebrow": "Who it's for",
-        "heading": "Built for a specific desk.",
+        "heading": "Built for a real home.",
         "text": "",
         "tone": "card"
       }
@@ -275,7 +317,7 @@
         "layout": "note",
         "eyebrow": "A note from Kyle",
         "heading": "Why this exists",
-        "body": "<p>I work inside ABA clinics with kids and parents every day, and I design for the web the rest of the time. Every kit on this shelf started as something a clinic or a family actually needed and could not find done well. If it does not help, tell me and I will fix it.</p>",
+        "body": "<p>I work inside ABA clinics with kids and parents every day, and I design for the web the rest of the time. Every kit on this shelf started as something a parent actually needed and could not find done well. If it does not help, tell me and I will fix it.</p>",
         "image_alt": "Kyle, founder of The Support Shelf",
         "name": "Kyle",
         "role": "Founder, The Support Shelf",
@@ -286,13 +328,49 @@
     "faq": {
       "type": "tss-faq",
       "blocks": {
-        "q1": { "type": "question", "settings": { "question": "Is this editable, or just a PDF?", "answer": "<p>Editable. You get template files you can open and change: wording, colors, logo, the lot. A print-ready PDF is one of the things you can export when you are done.</p>" } },
-        "q2": { "type": "question", "settings": { "question": "How is it delivered?", "answer": "<p>Instantly. As soon as checkout completes you get a download link on the confirmation page and in your email. Nothing ships.</p>" } },
-        "q3": { "type": "question", "settings": { "question": "Is it safe to use with families?", "answer": "<p>Yes. Nothing here collects or stores client information, and nothing makes treatment recommendations. These are formats and wording you review and adapt before anything reaches a family.</p>" } },
-        "q4": { "type": "question", "settings": { "question": "What if it isn't right for us? Can I get a refund?", "answer": "<p>Digital files cannot be returned, so the promise is simple: if a kit does not do what the page says it does, email us and we will make it right. The full policy is linked below the add-to-cart button.</p>" } },
-        "q5": { "type": "question", "settings": { "question": "Can I use it for more than one clinic location?", "answer": "<p>Yes, for locations you own or manage. Please do not resell or share the files outside your organization.</p>", "product": "clinic-welcome-kit-builder" } }
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Is this editable, or just a PDF?",
+            "answer": "<p>Editable. You get template files you can open and change: wording, pictures, colors, the lot. A print-ready PDF is one of the things you can export when you are done.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "How is it delivered?",
+            "answer": "<p>Instantly. As soon as checkout completes you get a download link on the confirmation page and in your email. Nothing ships.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Is it safe to use with my child?",
+            "answer": "<p>Yes. Nothing here collects or stores anything about your child, and nothing makes treatment recommendations. These are formats and wording you adapt for your own family. If your child works with a therapist, bring the kit along and use the steps you practice together.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "What if it isn't right for us? Can I get a refund?",
+            "answer": "<p>Digital files cannot be returned, so the promise is simple: if a kit does not do what the page says it does, email us and we will make it right. The full policy is linked below the add-to-cart button.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need special software?",
+            "answer": "<p>No. The kit opens in the editing tool named on this page, and you can also print it as is. A short quick-start note is included.</p>"
+          }
+        }
       },
-      "block_order": ["q1", "q2", "q3", "q4", "q5"],
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ],
       "settings": {
         "eyebrow": "Questions",
         "heading": "Before you buy",
@@ -313,5 +391,12 @@
       }
     }
   },
-  "order": ["main", "inside", "who", "founder_note", "faq", "related"]
+  "order": [
+    "main",
+    "inside",
+    "who",
+    "founder_note",
+    "faq",
+    "related"
+  ]
 }

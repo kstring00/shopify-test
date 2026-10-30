@@ -7,34 +7,94 @@
       "blocks": {
         "shelves": {
           "type": "_tss-footer-column",
-          "settings": { "heading": "The shelves", "show_policies": false, "show_email": false, "text": "" },
-          "blocks": {
-            "clinic": { "type": "_tss-footer-link", "settings": { "label": "", "collection": "the-clinic-shelf", "url": "", "badge": "", "page_handle": "" } },
-            "family": { "type": "_tss-footer-link", "settings": { "label": "", "collection": "the-family-shelf", "url": "", "badge": "", "page_handle": "" } },
-            "interactive": { "type": "_tss-footer-link", "settings": { "label": "", "collection": "the-interactive-shelf", "url": "", "badge": "Coming soon", "page_handle": "" } }
+          "settings": {
+            "heading": "Browse",
+            "show_policies": false,
+            "show_email": false,
+            "text": ""
           },
-          "block_order": ["clinic", "family", "interactive"]
+          "blocks": {
+            "family": {
+              "type": "_tss-footer-link",
+              "settings": {
+                "label": "",
+                "collection": "the-family-shelf",
+                "url": "",
+                "badge": "",
+                "page_handle": ""
+              }
+            },
+            "interactive": {
+              "type": "_tss-footer-link",
+              "settings": {
+                "label": "",
+                "collection": "the-interactive-shelf",
+                "url": "",
+                "badge": "Coming soon",
+                "page_handle": ""
+              }
+            }
+          },
+          "block_order": [
+            "family",
+            "interactive"
+          ]
         },
         "company": {
           "type": "_tss-footer-column",
-          "settings": { "heading": "The Support Shelf", "show_policies": true, "show_email": false, "text": "" },
-          "blocks": {
-            "about": { "type": "_tss-footer-link", "settings": { "label": "About", "page": "about", "url": "", "badge": "", "page_handle": "about" } },
-            "contact": { "type": "_tss-footer-link", "settings": { "label": "Contact", "page": "contact", "url": "", "badge": "", "page_handle": "contact" } }
+          "settings": {
+            "heading": "The Support Shelf",
+            "show_policies": true,
+            "show_email": false,
+            "text": ""
           },
-          "block_order": ["about", "contact"]
+          "blocks": {
+            "about": {
+              "type": "_tss-footer-link",
+              "settings": {
+                "label": "About",
+                "page": "about",
+                "url": "",
+                "badge": "",
+                "page_handle": "about"
+              }
+            },
+            "contact": {
+              "type": "_tss-footer-link",
+              "settings": {
+                "label": "Contact",
+                "page": "contact",
+                "url": "",
+                "badge": "",
+                "page_handle": "contact"
+              }
+            }
+          },
+          "block_order": [
+            "about",
+            "contact"
+          ]
         },
         "email": {
           "type": "_tss-footer-column",
-          "settings": { "heading": "Get new resources first", "show_policies": false, "show_email": true, "text": "One short email when something new lands on a shelf." },
+          "settings": {
+            "heading": "Get new resources first",
+            "show_policies": false,
+            "show_email": true,
+            "text": "One short email when something new lands on the shelf."
+          },
           "blocks": {},
           "block_order": []
         }
       },
-      "block_order": ["shelves", "company", "email"],
+      "block_order": [
+        "shelves",
+        "company",
+        "email"
+      ],
       "settings": {
         "tagline": "Thoughtfully made tools for the people who care.",
-        "blurb": "Editable resources for ABA clinics and the families they serve, made by someone who works inside clinics every day.",
+        "blurb": "Editable routines, schedules and everyday tools for parents and caregivers, made by someone who works with kids every day.",
         "show_contact": true,
         "tone": "card"
       }
@@ -81,7 +141,11 @@
           "blocks": {}
         }
       },
-      "block_order": ["copyright", "policies", "social"],
+      "block_order": [
+        "copyright",
+        "policies",
+        "social"
+      ],
       "settings": {
         "section_width": "page-width",
         "gap": 24,
@@ -93,5 +157,8 @@
       }
     }
   },
-  "order": ["footer_main", "footer_utilities"]
+  "order": [
+    "footer_main",
+    "footer_utilities"
+  ]
 }

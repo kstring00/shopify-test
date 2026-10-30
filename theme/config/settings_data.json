@@ -85,7 +85,7 @@
     "show_add_discount_code": true,
     "show_installments": false,
     "show_accelerated_checkout_buttons": true,
-    "empty_cart_button_link": "/collections/the-clinic-shelf",
+    "empty_cart_button_link": "/collections/the-family-shelf",
     "cart_thumbnail_border": "none",
     "cart_thumbnail_border_width": 1,
     "cart_thumbnail_border_opacity": 50,
@@ -117,7 +117,7 @@
     "quick_add_text": "{{ settings.color_palette.foreground }}",
     "show_second_image_on_hover": true,
     "product_card_carousel": false,
-    "empty_state_collection": "the-clinic-shelf",
+    "empty_state_collection": "the-family-shelf",
     "product_corner_radius": 14,
     "card_corner_radius": 16,
     "card_title_case": "default",
@@ -138,8 +138,8 @@
     "variant_button_radius": 10,
     "variant_button_width": "equal-width-buttons",
     "tss_tagline": "Thoughtfully made tools for the people who care.",
-    "tss_home_meta_title": "The Support Shelf | Editable resources for ABA clinics and families",
-    "tss_home_meta_description": "Editable welcome kits, parent communication templates and visual routines for ABA clinics and families, made by someone who works inside clinics every day. Instant download.",
+    "tss_home_meta_title": "The Support Shelf | Editable routines and tools for parents and caregivers",
+    "tss_home_meta_description": "Editable visual routines, schedules and everyday tools for parents and caregivers, made by someone who works with kids inside ABA clinics every day. Instant download.",
     "content_for_index": []
   },
   "presets": {

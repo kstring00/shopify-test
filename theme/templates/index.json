@@ -3,113 +3,36 @@
     "hero": {
       "type": "tss-hero",
       "blocks": {
-        "proof_1": { "type": "proof", "settings": { "text": "Built inside ABA clinics" } },
+        "proof_1": { "type": "proof", "settings": { "text": "Made by someone who works with kids every day" } },
         "proof_2": { "type": "proof", "settings": { "text": "Editable, not just a PDF" } },
         "proof_3": { "type": "proof", "settings": { "text": "Instant download" } }
       },
       "block_order": ["proof_1", "proof_2", "proof_3"],
       "settings": {
         "eyebrow": "Thoughtfully made tools for the people who care",
-        "heading": "Resources for ABA clinics and the families they serve.",
-        "subheading": "<p>Editable welcome kits, communication templates and visual routines, made by someone who works inside ABA clinics with kids and parents every day and designs for the web the rest of the time. They look finished on day one. You make them yours.</p>",
-        "cta_label": "Browse the Clinic Shelf",
-        "cta_link": "shopify://collections/the-clinic-shelf",
-        "secondary_label": "For families",
-        "secondary_link": "shopify://collections/the-family-shelf",
-        "image_alt": "Preview of The Support Shelf templates spread across a desk",
+        "heading": "Calmer mornings, clearer routines, and a little more room to breathe.",
+        "subheading": "<p>Editable visual routines, schedules and everyday tools for parents and caregivers, made by someone who spends every day inside ABA clinics with kids and the families who love them, and designs for the web the rest of the time. They look finished on day one. You make them yours.</p>",
+        "cta_label": "Browse the Family Shelf",
+        "cta_link": "shopify://collections/the-family-shelf",
+        "secondary_label": "Meet the person behind it",
+        "secondary_link": "shopify://pages/about",
+        "image_alt": "Preview of The Support Shelf routine cards spread across a kitchen table",
         "tone": "cream"
-      }
-    },
-    "doors": {
-      "type": "tss-two-doors",
-      "blocks": {
-        "clinic": {
-          "type": "door",
-          "settings": {
-            "collection": "the-clinic-shelf",
-            "audience": "For clinics",
-            "title": "The Clinic Shelf",
-            "promise": "Onboarding kits, parent communication and operations templates that make a small clinic look as organized as it already is.",
-            "cta_label": "Browse the Clinic Shelf",
-            "image_alt": "Clinic Shelf templates: welcome kit, newsletter and communication cards",
-            "size": "large",
-            "door_tone": "sage"
-          }
-        },
-        "family": {
-          "type": "door",
-          "settings": {
-            "collection": "the-family-shelf",
-            "audience": "For families",
-            "title": "The Family Shelf",
-            "promise": "Visual routines and everyday tools that make transitions clearer for kids and calmer for the grown-ups.",
-            "cta_label": "Browse the Family Shelf",
-            "image_alt": "Family Shelf templates: daily routine cards and schedules",
-            "size": "standard",
-            "door_tone": "card"
-          }
-        }
-      },
-      "block_order": ["clinic", "family"],
-      "settings": {
-        "eyebrow": "Two shelves",
-        "heading": "Pick the shelf that fits the work in front of you.",
-        "tone": "cream",
-        "compact": false
       }
     },
     "featured": {
       "type": "tss-featured-kit",
       "settings": {
-        "product": "clinic-welcome-kit-builder",
-        "eyebrow": "Featured on the Clinic Shelf",
+        "product": "daily-routine-kit",
+        "eyebrow": "On the Family Shelf",
         "heading": "",
-        "benefit": "Everything a new family needs in their first week, in one editable system that looks as professional as the care you provide.",
+        "benefit": "Morning, bedtime and the moments in between, made clearer for your child and calmer for you.",
         "format_heading": "Format & what's included",
         "format_line": "Editable [format] template. Instant delivery after purchase.",
-        "included": "<ul><li>Change the wording, colors and logo so it reads as your clinic.</li><li>Download link on the confirmation page and in your email, right after checkout.</li><li>Print it, email it, or hand it over on a tablet.</li></ul>",
+        "included": "<ul><li>Change the wording, pictures and colors so it fits your child and your home.</li><li>Download link on the confirmation page and in your email, right after checkout.</li><li>Print it, stick it on the fridge, or show it on a tablet, as often as you need.</li></ul>",
         "cta_label": "See what's inside the kit",
-        "fallback_link": "shopify://collections/the-clinic-shelf",
+        "fallback_link": "shopify://collections/the-family-shelf",
         "tone": "card"
-      }
-    },
-    "founder": {
-      "type": "tss-founder",
-      "blocks": {
-        "point_1": {
-          "type": "point",
-          "settings": {
-            "title": "Inside clinics daily",
-            "text": "Working alongside BCBAs, technicians and the families they serve, not designing from the outside."
-          }
-        },
-        "point_2": {
-          "type": "point",
-          "settings": {
-            "title": "Design is the day job",
-            "text": "Years of building websites and print materials for small businesses means the templates look finished, not homemade."
-          }
-        },
-        "point_3": {
-          "type": "point",
-          "settings": {
-            "title": "Tested on real desks",
-            "text": "Every kit starts as something a clinic or a parent actually asked for, then gets refined until it is easy to use."
-          }
-        }
-      },
-      "block_order": ["point_1", "point_2", "point_3"],
-      "settings": {
-        "layout": "full",
-        "eyebrow": "Built from the inside",
-        "heading": "Made by someone who sits in the clinic, not just at the keyboard.",
-        "body": "<p>I spend my days inside ABA clinics with kids, parents and the people who care for them, and I spend the rest of my time designing for the web. The Support Shelf is where those two halves meet: the forms, letters and routines clinics and families actually need, made to look as thoughtful as the work behind them.</p>",
-        "image_alt": "Kyle, founder of The Support Shelf",
-        "name": "Kyle",
-        "role": "Founder, The Support Shelf",
-        "cta_label": "Read the whole story",
-        "cta_link": "shopify://pages/about",
-        "tone": "cream"
       }
     },
     "steps": {
@@ -119,7 +42,7 @@
           "type": "step",
           "settings": {
             "title": "Choose a kit",
-            "text": "Pick the shelf that fits you, then the kit that solves the problem on your desk this week."
+            "text": "Pick the tool that fits the part of the day that is hardest right now."
           }
         },
         "step_2": {
@@ -133,7 +56,7 @@
           "type": "step",
           "settings": {
             "title": "Make it yours",
-            "text": "Swap in your name, logo and wording. It should feel like your clinic or your family made it."
+            "text": "Add your child's name, the steps that fit your home, and the pictures they know."
           }
         }
       },
@@ -147,12 +70,51 @@
         "compact": false
       }
     },
+    "founder": {
+      "type": "tss-founder",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "title": "In the room every day",
+            "text": "Working inside ABA clinics alongside kids, parents and the people who care for them, not designing from a distance."
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "title": "Design is the day job",
+            "text": "Years of building websites and print materials means the tools look finished and friendly, not homemade."
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "title": "Made for real homes",
+            "text": "Every kit starts as something a parent actually asked for, then gets refined until it is easy to use on a busy morning."
+          }
+        }
+      },
+      "block_order": ["point_1", "point_2", "point_3"],
+      "settings": {
+        "layout": "full",
+        "eyebrow": "Built from the inside",
+        "heading": "Made by someone who sits with kids and parents every day, not just at a keyboard.",
+        "body": "<p>I spend my days inside ABA clinics with kids, their parents and the people who care for them, and I spend the rest of my time designing for the web. The Support Shelf is where those two halves meet: the routines, schedules and everyday tools families actually need, made to look as thoughtful as the care behind them.</p>",
+        "image_alt": "Kyle, founder of The Support Shelf",
+        "name": "Kyle",
+        "role": "Founder, The Support Shelf",
+        "cta_label": "Read the whole story",
+        "cta_link": "shopify://pages/about",
+        "tone": "cream"
+      }
+    },
     "testimonials": {
       "type": "tss-testimonials",
       "disabled": true,
       "settings": {
-        "eyebrow": "From the people using them",
-        "heading": "Kind words from clinics and families.",
+        "eyebrow": "From the families using them",
+        "heading": "Kind words from parents and caregivers.",
         "tone": "cream"
       }
     },
@@ -160,12 +122,12 @@
       "type": "tss-email-capture",
       "settings": {
         "heading": "Get new resources first.",
-        "text": "One short email when something new lands on a shelf. No drip sequences, no pressure.",
+        "text": "One short email when something new lands on the shelf. No drip sequences, no pressure.",
         "button_label": "Join",
         "note": "Unsubscribe any time. We never share your address.",
         "tone": "cream"
       }
     }
   },
-  "order": ["hero", "doors", "featured", "founder", "steps", "testimonials", "email"]
+  "order": ["hero", "featured", "steps", "founder", "testimonials", "email"]
 }
