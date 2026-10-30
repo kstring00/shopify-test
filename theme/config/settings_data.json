@@ -119,7 +119,7 @@
     "product_card_carousel": false,
     "empty_state_collection": "the-clinic-shelf",
     "product_corner_radius": 14,
-    "card_corner_radius": 18,
+    "card_corner_radius": 16,
     "card_title_case": "default",
     "show_variant_image": false,
     "variant_swatch_width": 30,
